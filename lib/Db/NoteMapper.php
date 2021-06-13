@@ -1,6 +1,6 @@
 <?php
 
-namespace OCA\NotesTutorial\Db;
+namespace OCA\Nextbiblio\Db;
 
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\Entity;
@@ -30,6 +30,22 @@ class NoteMapper extends QBMapper {
 		return $this->findEntity($qb);
 	}
 
+	/**
+	 * @param string $isbn
+	 * @param string $userId
+	 * @return Entity|Note
+	 * @throws \OCP\AppFramework\Db\MultipleObjectsReturnedException
+	 * @throws DoesNotExistException
+	 */
+	public function findByISBN(string $isbn, string $userId) {
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('*')
+		   ->from($this->getTableName())
+		   ->where($qb->expr()->eq('isbn', $qb->createNamedParameter($isbn)))
+		   ->andWhere($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
+		return $this->findEntity($qb);
+	}
+	
 	/**
 	 * @param string $userId
 	 * @return array
