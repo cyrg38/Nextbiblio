@@ -1,14 +1,14 @@
 <?php
 
-namespace OCA\NotesTutorial\Service;
+namespace OCA\Nextbiblio\Service;
 
 use Exception;
 
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
 
-use OCA\NotesTutorial\Db\Note;
-use OCA\NotesTutorial\Db\NoteMapper;
+use OCA\Nextbiblio\Db\Note;
+use OCA\Nextbiblio\Db\NoteMapper;
 
 class NoteService {
 
@@ -45,24 +45,69 @@ class NoteService {
 		}
 	}
 
-	public function create($title, $content, $userId) {
-		$note = new Note();
-		$note->setTitle($title);
-		$note->setContent($content);
-		$note->setUserId($userId);
-		return $this->mapper->insert($note);
-	}
+   public function findByISBN(string $isbn, string $userId) {
+        try {
+            return $this->mapper->findByISBN($isbn, $userId);
+        // in order to be able to plug in different storage backends like files
+        // for instance it is a good idea to turn storage related exceptions
+        // into service related exceptions so controllers and service users
+        // have to deal with only one type of exception
+        } catch(Exception $e) {
+            $this->handleException($e);
+        }
+    }
 
-	public function update($id, $title, $content, $userId) {
-		try {
-			$note = $this->mapper->find($id, $userId);
-			$note->setTitle($title);
-			$note->setContent($content);
-			return $this->mapper->update($note);
-		} catch (Exception $e) {
-			$this->handleException($e);
-		}
-	}
+    public function create(string $title, string $content, string $userId) {
+        $note = new Note();
+         $note->setTitle($title);
+         $note->set_emplacement($_emplacement);
+         $note->set_isbn($_isbn);
+         $note->set_lu($_lu);
+         $note->set_period($_period);
+         $note->setUuid($uuid);
+         $note->setPublisher($publisher);
+         $note->setIsbn($isbn);
+         $note->setIdentifiers($identifiers);
+         $note->setAuthors($authors);
+         $note->setTimestamp($timestamp);
+         $note->setPubdate($pubdate);
+         $note->setTags($tags);
+         $note->setLanguages($languages);
+         $note->setCover($cover);
+         $note->setLibrary_name($library_name);
+         $note->setComments($comments);
+         $note->setUserId($this->userId);
+        $note->setUserId($userId);
+        return $this->mapper->insert($note);
+    }
+
+    public function update(int $id, string $title, string $content, string $userId) {
+        try {
+            $note = $this->mapper->find($id, $userId);
+         $note->setTitle($title);
+         $note->set_emplacement($_emplacement);
+         $note->set_isbn($_isbn);
+         $note->set_lu($_lu);
+         $note->set_period($_period);
+         $note->setUuid($uuid);
+         $note->setPublisher($publisher);
+         $note->setIsbn($isbn);
+         $note->setIdentifiers($identifiers);
+         $note->setAuthors($authors);
+         $note->setTimestamp($timestamp);
+         $note->setPubdate($pubdate);
+         $note->setTags($tags);
+         $note->setLanguages($languages);
+         $note->setCover($cover);
+         $note->setLibrary_name($library_name);
+         $note->setComments($comments);
+         $note->setUserId($this->userId);
+
+            return $this->mapper->update($note);
+        } catch(Exception $e) {
+            $this->handleException($e);
+        }
+    }
 
 	public function delete($id, $userId) {
 		try {
