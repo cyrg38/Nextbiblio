@@ -1,6 +1,5 @@
 <?php
 
-namespace OCA\NotesTutorial\Service;
+namespace OCA\Nextbiblio\Service;
 
-class NoteNotFound extends \Exception {
-}
+class NoteNotFound extends \Exception {}
