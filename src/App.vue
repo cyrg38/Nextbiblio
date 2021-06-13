@@ -1,28 +1,28 @@
 <template>
-	<div id="content" class="app-notestutorial">
+	<div id="content" class="app-nextbiblio">
 		<AppNavigation>
 			<AppNavigationNew v-if="!loading"
-				:text="t('notestutorial', 'New note')"
+				:text="t('nextbiblio', 'New note')"
 				:disabled="false"
-				button-id="new-notestutorial-button"
+				button-id="new-nextbiblio-button"
 				button-class="icon-add"
 				@click="newNote" />
 			<ul>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
-					:title="note.title ? note.title : t('notestutorial', 'New note')"
+					:title="note.title ? note.title : t('nextbiblio', 'New note')"
 					:class="{active: currentNoteId === note.id}"
 					@click="openNote(note)">
 					<template slot="actions">
 						<ActionButton v-if="note.id === -1"
 							icon="icon-close"
 							@click="cancelNewNote(note)">
-							{{ t('notestutorial', 'Cancel note creation') }}
+							{{ t('nextbiblio', 'Cancel note creation') }}
 						</ActionButton>
 						<ActionButton v-else
 							icon="icon-delete"
 							@click="deleteNote(note)">
-							{{ t('notestutorial', 'Delete note') }}
+							{{ t('nextbiblio', 'Delete note') }}
 						</ActionButton>
 					</template>
 				</AppNavigationItem>
@@ -37,13 +37,13 @@
 				<textarea ref="content" v-model="currentNote.content" :disabled="updating" />
 				<input type="button"
 					class="primary"
-					:value="t('notestutorial', 'Save')"
+					:value="t('nextbiblio', 'Save')"
 					:disabled="updating || !savePossible"
 					@click="saveNote">
 			</div>
 			<div v-else id="emptycontent">
 				<div class="icon-file" />
-				<h2>{{ t('notestutorial', 'Create a note to get started') }}</h2>
+				<h2>{{ t('nextbiblio', 'Create a note to get started') }}</h2>
 			</div>
 		</AppContent>
 	</div>
@@ -55,12 +55,10 @@ import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
-
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
-
 export default {
 	name: 'App',
 	components: {
@@ -89,7 +87,6 @@ export default {
 			}
 			return this.notes.find((note) => note.id === this.currentNoteId)
 		},
-
 		/**
 		 * Returns true if a note is selected and its title is not empty
 		 * @returns {Boolean}
@@ -103,15 +100,14 @@ export default {
 	 */
 	async mounted() {
 		try {
-			const response = await axios.get(generateUrl('/apps/notestutorial/notes'))
+			const response = await axios.get(generateUrl('/apps/nextbiblio/notes'))
 			this.notes = response.data
 		} catch (e) {
 			console.error(e)
-			showError(t('notestutorial', 'Could not fetch notes'))
+			showError(t('nextbiblio', 'Could not fetch notes'))
 		}
 		this.loading = false
 	},
-
 	methods: {
 		/**
 		 * Create a new note and focus the note content field automatically
@@ -169,13 +165,13 @@ export default {
 		async createNote(note) {
 			this.updating = true
 			try {
-				const response = await axios.post(generateUrl('/apps/notestutorial/notes'), note)
+				const response = await axios.post(generateUrl('/apps/nextbiblio/notes'), note)
 				const index = this.notes.findIndex((match) => match.id === this.currentNoteId)
 				this.$set(this.notes, index, response.data)
 				this.currentNoteId = response.data.id
 			} catch (e) {
 				console.error(e)
-				showError(t('notestutorial', 'Could not create the note'))
+				showError(t('nextbiblio', 'Could not create the note'))
 			}
 			this.updating = false
 		},
@@ -186,10 +182,10 @@ export default {
 		async updateNote(note) {
 			this.updating = true
 			try {
-				await axios.put(generateUrl(`/apps/notestutorial/notes/${note.id}`), note)
+				await axios.put(generateUrl(`/apps/nextbiblio/notes/${note.id}`), note)
 			} catch (e) {
 				console.error(e)
-				showError(t('notestutorial', 'Could not update the note'))
+				showError(t('nextbiblio', 'Could not update the note'))
 			}
 			this.updating = false
 		},
@@ -199,15 +195,15 @@ export default {
 		 */
 		async deleteNote(note) {
 			try {
-				await axios.delete(generateUrl(`/apps/notestutorial/notes/${note.id}`))
+				await axios.delete(generateUrl(`/apps/nextbiblio/notes/${note.id}`))
 				this.notes.splice(this.notes.indexOf(note), 1)
 				if (this.currentNoteId === note.id) {
 					this.currentNoteId = null
 				}
-				showSuccess(t('notestutorial', 'Note deleted'))
+				showSuccess(t('nextbiblio', 'Note deleted'))
 			} catch (e) {
 				console.error(e)
-				showError(t('notestutorial', 'Could not delete the note'))
+				showError(t('nextbiblio', 'Could not delete the note'))
 			}
 		},
 	},
@@ -222,11 +218,9 @@ export default {
 		flex-direction: column;
 		flex-grow: 1;
 	}
-
 	input[type='text'] {
 		width: 100%;
 	}
-
 	textarea {
 		flex-grow: 1;
 		width: 100%;
