@@ -2,7 +2,7 @@
 
 namespace OCA\Nextbiblio\Controller;
 
-use OCA\NotesTutorial\AppInfo\Application;
+use OCA\Nextbiblio\AppInfo\Application;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
