@@ -2,8 +2,8 @@
 
 return [
 	'resources' => [
-		'nextbiblio' => ['url' => '/nextbiblio'],
-		'nextbiblio_api' => ['url' => '/api/0.1/nextbiblio']
+		'nextbiblio' => ['url' => '/notes'],
+		'nextbiblio_api' => ['url' => '/api/0.1/notes']
 	],
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
