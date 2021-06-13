@@ -2,7 +2,7 @@
 	<div id="content" class="app-nextbiblio">
 		<AppNavigation>
 			<AppNavigationNew v-if="!loading"
-				:text="t('nextbiblio', 'New note')"
+				:text="t('nextbiblio', 'New notice')"
 				:disabled="false"
 				button-id="new-nextbiblio-button"
 				button-class="icon-add"
