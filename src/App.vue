@@ -10,19 +10,19 @@
 			<ul>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
-					:title="note.title ? note.title : t('nextbiblio', 'New note')"
+					:title="note.title ? note.title : t('nextbiblio', 'New notice')"
 					:class="{active: currentNoteId === note.id}"
 					@click="openNote(note)">
 					<template slot="actions">
 						<ActionButton v-if="note.id === -1"
 							icon="icon-close"
 							@click="cancelNewNote(note)">
-							{{ t('nextbiblio', 'Cancel note creation') }}
+							{{ t('nextbiblio', 'Cancel notice creation') }}
 						</ActionButton>
 						<ActionButton v-else
 							icon="icon-delete"
 							@click="deleteNote(note)">
-							{{ t('nextbiblio', 'Delete note') }}
+							{{ t('nextbiblio', 'Delete notice') }}
 						</ActionButton>
 					</template>
 				</AppNavigationItem>
@@ -100,11 +100,13 @@ export default {
 	 */
 	async mounted() {
 		try {
+			console.log(generateUrl('/apps/nextbiblio/notes'))
 			const response = await axios.get(generateUrl('/apps/nextbiblio/notes'))
+			console.log(response.data)
 			this.notes = response.data
 		} catch (e) {
 			console.error(e)
-			showError(t('nextbiblio', 'Could not fetch notes'))
+			showError(t('nextbiblio', 'Could not fetch notices'))
 		}
 		this.loading = false
 	},
