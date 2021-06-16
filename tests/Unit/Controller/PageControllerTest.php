@@ -1,6 +1,6 @@
 <?php
 
-namespace OCA\NotesTutorial\Controller;
+namespace OCA\Nextbiblio\Controller;
 
 use PHPUnit\Framework\TestCase;
 
