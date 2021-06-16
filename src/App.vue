@@ -101,9 +101,9 @@ export default {
 	async mounted() {
 		try {
 			console.log(generateUrl('/apps/nextbiblio/notes'))
-			const response = await axios.get(generateUrl('/apps/nextbiblio/notes'))
+			//const response = await axios.get(generateUrl('/apps/nextbiblio/notes'))
 			console.log(response.data)
-			this.notes = response.data
+			this.notes = null
 		} catch (e) {
 			console.error(e)
 			showError(t('nextbiblio', 'Could not fetch notices'))
