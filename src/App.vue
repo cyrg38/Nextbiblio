@@ -30,11 +30,11 @@
 		</AppNavigation>
 		<AppContent>
 			<div v-if="currentNote">
-				<input ref="title"
+				Title : <input ref="title"
 					v-model="currentNote.title"
 					type="text"
 					:disabled="updating">
-				<input ref="timestamp"
+				TimeStamp : <input ref="timestamp"
 					v-model="currentNote.timestamp"
 					type="text"
 					:disabled="updating">
