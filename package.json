@@ -1,19 +1,19 @@
 {
-	"name": "notestutorial",
-	"description": "A simple Nextcloud app tutorial for building a notes app",
-	"version": "18.0.0",
-	"author": "Julius Härtl <jus@bitgrid.net",
+	"name": "nextbiblio",
+	"description": "A simple Nextcloud app for biblio",
+	"version": "0.0.1",
+	"author": "Cyrille GUIBERT <cyrille@cyrg38.fr>",
 	"contributors": [
-		"John Molakvoæ <skjnldsv@protonmail.com>"
+		
 	],
 	"bugs": {
-		"url": "https://github.com/nextcloud/app-tutorial/issues"
+		"url": "https://github.com/cyrg38/nextbiblio/issues"
 	},
 	"repository": {
-		"url": "https://github.com/nextcloud/app-tutorial",
+		"url": "https://github.com/cyrg38/nextbiblio",
 		"type": "git"
 	},
-	"homepage": "https://github.com/nextcloud/app-tutorial",
+	"homepage": "https://github.com/cyrg38/nextbiblio",
 	"license": "agpl",
 	"private": true,
 	"scripts": {
