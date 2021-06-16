@@ -10,7 +10,7 @@ use OCP\IDBConnection;
 
 class NoteMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {
-		parent::__construct($db, 'notestutorial', Note::class);
+		parent::__construct($db, 'nextbiblio', Note::class);
 	}
 
 	/**
