@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a4e5f971e07c0a5d62527cd393bc9aedc586f135',
+        'reference' => 'aaf0d7ece1c8f5acffced6d86b68878166158387',
         'name' => 'nextcloud/app-tutorial',
         'dev' => true,
     ),
@@ -82,7 +82,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a4e5f971e07c0a5d62527cd393bc9aedc586f135',
+            'reference' => 'aaf0d7ece1c8f5acffced6d86b68878166158387',
             'dev_requirement' => false,
         ),
         'nextcloud/coding-standard' => array(
