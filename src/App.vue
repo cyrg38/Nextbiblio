@@ -34,7 +34,18 @@
 					v-model="currentNote.title"
 					type="text"
 					:disabled="updating">
-				<textarea ref="content" v-model="currentNote.content" :disabled="updating" />
+				<input ref="timestamp"
+					v-model="currentNote.timestamp"
+					type="text"
+					:disabled="updating">
+				Lu : <select ref="_lu"
+					v-model="currentNote.title"
+					type="radio"
+					:disabled="updating">
+					<option value="yes">Oui</option>
+					<option value="no">Non</option>
+				</select>
+				<textarea ref="comments" v-model="currentNote.comments" :disabled="updating" />
 				<input type="button"
 					class="primary"
 					:value="t('nextbiblio', 'Save')"
@@ -121,7 +132,7 @@ export default {
 			}
 			this.currentNoteId = note.id
 			this.$nextTick(() => {
-				this.$refs.content.focus()
+				this.$refs.comments.focus()
 			})
 		},
 		/**
@@ -146,7 +157,7 @@ export default {
 				this.notes.push({
 					id: -1,
 					title: '',
-					content: '',
+					comments: '',
 				})
 				this.$nextTick(() => {
 					this.$refs.title.focus()
