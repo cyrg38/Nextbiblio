@@ -9,10 +9,9 @@ use OCP\AppFramework\Db\Entity;
 class Note extends Entity implements JsonSerializable {
     protected $title;
     protected $userId;
-    protected $_emplacement;
-    protected $_isbn;
-    protected $_lu;
-    protected $_period;
+    protected $emplacement;
+    protected $lu;
+    protected $period;
     protected $uuid;
     protected $publisher;
     protected $isbn;
@@ -23,7 +22,6 @@ class Note extends Entity implements JsonSerializable {
     protected $tags;
     protected $languages;
     protected $cover;
-    protected $library_name;
     protected $comments;
 
     public function __construct() {
@@ -35,10 +33,9 @@ class Note extends Entity implements JsonSerializable {
             'id' => $this->id,
             'title' => $this->title,
             'user_id' => $this->user_id,
-            '_emplacement' => $this->_emplacement,
-            '_isbn' => $this->_isbn,
-            '_lu' => $this->_lu,
-            '_period' => $this->_period,
+            'emplacement' => $this->emplacement,
+            'lu' => $this->lu,
+            'period' => $this->period,
             'uuid' => $this->uuid,
             'publisher' => $this->publisher,
             'isbn' => $this->isbn,
@@ -49,7 +46,6 @@ class Note extends Entity implements JsonSerializable {
             'tags' => $this->tags,
             'languages' => $this->languages,
             'cover' => $this->cover,
-            'library_name' => $this->library_name,
             'comments' => $this->comments
         ];
     }

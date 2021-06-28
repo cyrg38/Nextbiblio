@@ -33,64 +33,56 @@
                 'notnull' => true,
                 'length' => 200,
             ]);
-            $table->addColumn('_emplacement', 'string', [
-                'notnull' => true,
+            $table->addColumn('emplacement', 'string', [
+                'notnull' => false,
                 'length' => 200,
             ]);
-            $table->addColumn('_isbn', 'string', [
+            $table->addColumn('lu', 'boolean', [
                 'notnull' => true,
-                'length' => 200,
+                'default' => false
             ]);
-            $table->addColumn('_lu', 'boolean', [
-                'notnull' => true,
-                'length' => 200,
-            ]);
-            $table->addColumn('_period', 'string', [
-                'notnull' => true,
+            $table->addColumn('period', 'string', [
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('uuid', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('publisher', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('isbn', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('identifiers', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('authors', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('timestamp', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('pubdate', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('tags', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('languages', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('cover', 'string', [
-                'notnull' => true,
-                'length' => 200,
-            ]);
-            $table->addColumn('library_name', 'string', [
-                'notnull' => true,
+                'notnull' => false,
                 'length' => 200,
             ]);
             $table->addColumn('comments', 'text', [

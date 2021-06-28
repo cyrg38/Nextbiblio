@@ -1,12 +1,12 @@
 {
-    "name": "nextcloud/app-tutorial",
-    "description": "Nextcloud App Tutorial",
+    "name": "cyrg38/nextbiblio",
+    "description": "Nextcloud App for Biblio",
     "type": "project",
     "license": "AGPL",
     "authors": [
         {
-            "name": "Bernhard Posselt",
-            "email": "dev@bernhard-posselt.com"
+            "name": "Cyrille GUIBERT",
+            "email": "cyrille@cyrg38.fr"
         }
     ],
     "require": {},
@@ -15,10 +15,10 @@
         "nextcloud/coding-standard": "^0.5.0"
     },
     "config": {
-        "optimize-autoloader": true,
+        "optimize-autoloader": false,
         "classmap-authoritative": true,
         "platform": {
-            "php": "7.2"
+            "php": "7.4"
         }
     },
     "scripts": {

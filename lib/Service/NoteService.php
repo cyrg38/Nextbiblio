@@ -60,10 +60,9 @@ class NoteService {
     public function create(string $title, string $content, string $userId) {
         $note = new Note();
          $note->setTitle($title);
-         $note->set_emplacement($_emplacement);
-         $note->set_isbn($_isbn);
-         $note->set_lu($_lu);
-         $note->set_period($_period);
+         $note->setEmplacement($emplacement);
+         $note->setLu($lu);
+         $note->setPeriod($period);
          $note->setUuid($uuid);
          $note->setPublisher($publisher);
          $note->setIsbn($isbn);
@@ -74,7 +73,6 @@ class NoteService {
          $note->setTags($tags);
          $note->setLanguages($languages);
          $note->setCover($cover);
-         $note->setLibrary_name($library_name);
          $note->setComments($comments);
          $note->setUserId($this->userId);
         $note->setUserId($userId);
@@ -85,10 +83,9 @@ class NoteService {
         try {
             $note = $this->mapper->find($id, $userId);
          $note->setTitle($title);
-         $note->set_emplacement($_emplacement);
-         $note->set_isbn($_isbn);
-         $note->set_lu($_lu);
-         $note->set_period($_period);
+         $note->setEmplacement($emplacement);
+         $note->setLu($lu);
+         $note->setPeriod($period);
          $note->setUuid($uuid);
          $note->setPublisher($publisher);
          $note->setIsbn($isbn);
@@ -99,7 +96,6 @@ class NoteService {
          $note->setTags($tags);
          $note->setLanguages($languages);
          $note->setCover($cover);
-         $note->setLibrary_name($library_name);
          $note->setComments($comments);
          $note->setUserId($this->userId);
 

@@ -22,7 +22,7 @@
 import Vue from 'vue'
 import App from './App'
 
-Vue.mixin({ methods: { t, n } })
+Vue.mixin({ methods: { t, n } }) // eslint-disable-line no-use-before-define
 
 export default new Vue({
 	el: '#content',

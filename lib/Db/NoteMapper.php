@@ -10,7 +10,7 @@ use OCP\IDBConnection;
 
 class NoteMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {
-		parent::__construct($db, 'oc_biblio', Note::class);
+		parent::__construct($db, 'biblio', Note::class);
 	}
 
 	/**
@@ -55,7 +55,23 @@ class NoteMapper extends QBMapper {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from($this->getTableName())
-			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
+			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)))
+			->orderBy('title','ASC');
 		return $this->findEntities($qb);
 	}
+	
+	/**
+	 * @param string $userId
+	 * @return array
+	 */
+	public function findAllByAuthors(string $userId, string $authors): array {
+		/* @var $qb IQueryBuilder */
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('*')
+			->from($this->getTableName())
+			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)))
+			->andWhere($qb->expr()->iLike('authors', $qb->createNamedParameter($authors)));
+		return $this->findEntities($qb);
+	}
+
 }

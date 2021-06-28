@@ -40,14 +40,43 @@ class NoteController extends Controller {
 		});
 	}
 
+	/**
+	 * @NoAdminRequired
+	 */
+	public function searchByIsbn(string $isbn) {
+		$request = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . $isbn;
+		$response = file_get_contents($request);
+		$results = json_decode($response);
+		$infos = [];
+
+		if($results->totalItems > 0){
+			// avec de la chance, ce sera le 1er trouvé
+			$book = $results->items[0];
+			$infos['isbn'] = $book->volumeInfo->industryIdentifiers[0]->identifier;
+			$infos['title'] = $book->volumeInfo->title;
+			$infos['authors'] = $book->volumeInfo->authors[0];
+			$infos['languages'] = $book->volumeInfo->language;
+			$infos['pubdate'] = $book->volumeInfo->publishedDate;
+			$infos['timestamp'] = '2021-06-26T17:03:00+02:00';
+			$infos['pages'] = $book->volumeInfo->pageCount;
+			$infos['tags'] = $book->categories;
+			$infos['comments'] = $book->searchInfo->textSnippet;
+
+			if( isset($book->volumeInfo->imageLinks) ){
+				$infos['image'] = str_replace('&edge=curl', '', $book->volumeInfo->imageLinks->thumbnail);
+			}
+			//print_r($infos);
+		}
+		return $infos;
+	}
+	
     /**
      * @NoAdminRequired
      *
      * @param string $title
-     * @param string $_emplacement
-     * @param string $_isbn
-     * @param string $_lu
-     * @param string $_period
+     * @param string $emplacement
+     * @param string $lu
+     * @param string $period
      * @param string $uuid
      * @param string $publisher
      * @param string $isbn
@@ -58,19 +87,15 @@ class NoteController extends Controller {
      * @param string $tags
      * @param string $languages
      * @param string $cover
-     * @param string $library_name
      * @param text $comments
      */
-    public function create(string $title, string $_emplacement, string $_isbn, string $_lu, 
-                           string $_period, string $uuid, string $publisher, string $isbn, string $identifiers,
+    public function create(string $title, string $emplacement, string $_lu, string $period,
+                           string $uuid, string $publisher, string $isbn, string $identifiers,
                            string $authors, string $timestamp, string $pubdate, string $tags, string $languages,
-                           string $cover, string $library_name, text $comments,
-                           string $userId) {
-        return $this->service->create( $title,  $_emplacement,  $_isbn,  $_lu, 
-                            $_period,  $uuid,  $publisher,  $isbn,  $identifiers,
-                            $authors,  $timestamp,  $pubdate,  $tags,  $languages,
-                            $cover,  $library_name, $comments,
-                            $this->userId);
+                           string $cover, text $comments, string $userId) {
+        return $this->service->create( $title,  $emplacement, $lu, $period, $uuid,  $publisher,  $isbn,  
+				      $identifiers, $authors,  $timestamp,  $pubdate,  $tags,  
+				      $languages, $cover, $comments, $this->userId);
     }
 
     /**
@@ -78,10 +103,9 @@ class NoteController extends Controller {
      *
      * @param int $id
      * @param string $title
-     * @param string $_emplacement
-     * @param string $_isbn
-     * @param string $_lu
-     * @param string $_period
+     * @param string $emplacement
+     * @param string $lu
+     * @param string $period
      * @param string $uuid
      * @param string $publisher
      * @param string $isbn
@@ -92,22 +116,21 @@ class NoteController extends Controller {
      * @param string $tags
      * @param string $languages
      * @param string $cover
-     * @param string $library_name
      * @param text $comments
      */
-    public function update(int $id, string $title, string $_emplacement, string $_isbn, string $_lu, 
-                           string $_period, string $uuid, string $publisher, string $isbn, string $identifiers,
-                           string $authors, string $timestamp, string $pubdate, string $tags, string $languages,
-                           string $cover, string $library_name, text $comments) {
-        return $this->handleNotFound(function () use ($id, $title,  $_emplacement,  $_isbn,  $_lu, 
-                            $_period,  $uuid,  $publisher,  $isbn,  $identifiers,
+    public function update(int $id, string $title, string $emplacement, string $lu, string $period, string $uuid, 
+			   string $publisher, string $isbn, string $identifiers, string $authors, string $timestamp, 
+			   string $pubdate, string $tags, string $languages, string $cover, text $comments) {
+        return $this->handleNotFound(function () 
+		use ($id, $title,  $emplacement, $lu, $period,  $uuid,  $publisher,  $isbn,  $identifiers,
                             $authors,  $timestamp,  $pubdate,  $tags,  $languages,
-                            $cover,  $library_name, $comments)
-            return $this->service->update($id, $title,  $_emplacement,  $_isbn,  $_lu, 
-                            $_period,  $uuid,  $publisher,  $isbn,  $identifiers,
+                            $cover, $comments) {
+		return $this->service->update($id, $title,  $emplacement, $lu, 
+                            $period,  $uuid,  $publisher,  $isbn,  $identifiers,
                             $authors,  $timestamp,  $pubdate,  $tags,  $languages,
-                            $cover,  $library_name, $comments, $this->userId);
-
+                            $cover,  $comments, $this->userId);
+		});
+    }
 
 	/**
 	 * @NoAdminRequired
