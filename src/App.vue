@@ -14,9 +14,7 @@
 			<ul>
 				<AppNavigationItem v-for="author in [A,B,C]"
 					:key="author"
-					:title="authors!='' ? authors : t('nextbiblio', '????')"
-					:class=""
-					@click="">
+					:title="authors!='' ? authors : t('nextbiblio', '????')">
 				</AppNavigationItem>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
