@@ -12,9 +12,10 @@
 				@submit="searchNoticeFromIsbn(9782080811158)"/>
 			<AppNavigationCounter :highlighted="true">{{ counter }}</AppNavigationCounter>
 			<ul>
-				<AppNavigationItem v-for="author in [A,B,C]"
-					:key="author"
-					:title="authors!='' ? authors : t('nextbiblio', '????')">
+				<AppNavigationItem v-for="index in [A,B,C]"
+					:key="index"
+					:title="index"
+					@click="searchNoticeFromAuthor()">
 				</AppNavigationItem>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
@@ -239,6 +240,12 @@ export default {
 			console.log(searchedNotice)
 			searchedNotice.id=-1
 			this.notes.push(searchedNotice)
+		},
+		/**
+		 * Search a new note from Databanks (in background from php)
+		 */
+		async searchNoticeFromAuthor() {
+			console.log('a search again')
 		},
 		
 		/**
