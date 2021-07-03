@@ -12,6 +12,12 @@
 				@submit="searchNoticeFromIsbn(9782080811158)"/>
 			<AppNavigationCounter :highlighted="true">{{ counter }}</AppNavigationCounter>
 			<ul>
+				<AppNavigationItem v-for="author in [A,B,C]"
+					:key="author"
+					:title="authors!='' ? authors : t('nextbiblio', '????')"
+					:class=""
+					@click="">
+				</AppNavigationItem>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
 					:title="note.title ? note.title : t('nextbiblio', 'New notice')"
@@ -31,14 +37,12 @@
 					</template>
 				</AppNavigationItem>
 			</ul>
-			<ul>
-				<AppNavigationSettings
-					title="Settings for Nextbiblio"
-					description="settings for calling API from user TOKEN on various ISBN DB"
-					doc-url="">
-					des trucs ici
-				</AppNavigationSettings>
-			</ul>
+			<AppNavigationSettings
+				title="Settings for Nextbiblio"
+				description="settings for calling API from user TOKEN on various ISBN DB"
+				doc-url="">
+				des trucs ici
+			</AppNavigationSettings>
 		</AppNavigation>
 		<AppContent>
 			<div v-if="currentNote">
