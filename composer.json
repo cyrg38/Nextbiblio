@@ -15,7 +15,7 @@
         "nextcloud/coding-standard": "^0.5.0"
     },
     "config": {
-        "optimize-autoloader": false,
+        "optimize-autoloader": true,
         "classmap-authoritative": true,
         "platform": {
             "php": "7.4"

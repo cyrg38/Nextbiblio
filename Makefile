@@ -3,8 +3,9 @@
 app_name=$(notdir $(CURDIR))
 build_tools_directory=$(CURDIR)/build/tools
 composer=$(shell which composer 2> /dev/null)
+export COMPOSER_ALLOW_SUPERUSER=1
 
-all: dev-setup lint build-js-production test
+all: dev-setup lint build-js-production 
 
 # Dev env management
 dev-setup: clean clean-dev composer npm-init
@@ -28,8 +29,8 @@ endif
 npm-init:
 	npm ci
 
-npm-update:
-	npm update
+#npm-update:
+#	npm update
 
 # Building
 build-js:
@@ -63,6 +64,6 @@ clean-dev:
 	rm -rf node_modules
 
 # Tests
-test:
-	./vendor/phpunit/phpunit/phpunit -c phpunit.xml
-	./vendor/phpunit/phpunit/phpunit -c phpunit.integration.xml
+#test:
+#	./vendor/phpunit/phpunit/phpunit -c phpunit.xml
+#	./vendor/phpunit/phpunit/phpunit -c phpunit.integration.xml

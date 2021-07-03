@@ -85,8 +85,9 @@
 					<img v-else
 					src="https://via.placeholder.com/250x250"
 					alt=""/><br/>
-				TimeStamp : <DatetimePicker v-model="time"
-					type="datetime"	ref="timestamp"
+				TimeStamp : <DatetimePicker 
+					type="datetime"
+					ref="timestamp"
 					v-model="currentNote.timestamp"
 					:disabled="updating" />
 				Pubdate : <DatetimePicker
@@ -231,13 +232,11 @@ export default {
 		 */
 		async searchNoticeFromIsbn(isbn) {
 			console.log('a search again')
-			const searchedNotice = await axios.get(generateUrl('/apps/nextbiblio/notes/'+isbn))
+			const searchedNotice = await axios.get(generateUrl('/apps/nextbiblio/notes',isbn))
 			console.log(isbn)
-			console.log(searchedNotice.id)
-			//this.notes.push(searchedNotice)
-			//this.$nextTick(() => {
-		//		this.$refs.isbn.focus()
-		//	})
+			console.log(searchedNotice)
+			searchedNotice.id=-1
+			this.notes.push(searchedNotice)
 		},
 		
 		/**

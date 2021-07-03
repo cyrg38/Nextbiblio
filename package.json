@@ -3,9 +3,7 @@
 	"description": "A simple Nextcloud app for biblio",
 	"version": "0.0.1",
 	"author": "Cyrille GUIBERT <cyrille@cyrg38.fr>",
-	"contributors": [
-		
-	],
+	"contributors": [],
 	"bugs": {
 		"url": "https://github.com/cyrg38/nextbiblio/issues"
 	},
@@ -57,7 +55,7 @@
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-promise": "^4.3.1",
 		"eslint-plugin-standard": "^4.1.0",
-		"eslint-plugin-vue": "^6.2.2",
+		"eslint-plugin-vue": "^7.11.1",
 		"file-loader": "^6.2.0",
 		"node-sass": "^4.14.1",
 		"sass-loader": "^8.0.2",
@@ -70,5 +68,9 @@
 		"vue-template-compiler": "^2.6.13",
 		"webpack": "^4.46.0",
 		"webpack-cli": "^3.3.12"
-	}
+	},
+	"main": ".eslintrc.js",
+ 	"directories": {
+		"lib": "lib"
+  	}
 }
