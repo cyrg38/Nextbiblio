@@ -32,12 +32,12 @@
 				</AppNavigationItem>
 			</ul>
 			<ul>
-				<AppSettingsSection
+				<AppNavigationSettings
 					title="Settings for Nextbiblio"
 					description="settings for calling API from user TOKEN on various ISBN DB"
 					doc-url="">
 					des trucs ici
-				</AppSettingsSection>
+				</AppNavigationSettings>
 			</ul>
 		</AppNavigation>
 		<AppContent>
@@ -124,7 +124,7 @@ import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
-import AppSettingsSection from '@nextcloud/vue/dist/Components/AppSettingsSection'
+import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
@@ -140,7 +140,7 @@ export default {
 		AppNavigationNew,
 		AppNavigationCounter,
 		DatetimePicker,
-		AppSettingsSection,
+		AppNavigationSettings,
 	},
 	data() {
 		return {
