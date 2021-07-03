@@ -16,6 +16,7 @@
 					:key="index"
 					:title="index"
 					@click="searchNoticeFromAuthor()">
+					{{index}}
 				</AppNavigationItem>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
