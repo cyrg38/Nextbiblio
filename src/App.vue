@@ -7,10 +7,10 @@
 				button-id="new-nextbiblio-button"
 				button-class="icon-add"
 				@click="newNotice" />
-			<ActionInput icon="icon-edit"
-				value="9782080811158" 
-				@submit="searchNoticeFromIsbn(9782080811158)"/>
-			<AppNavigationCounter :highlighted="true">{{ counter }}</AppNavigationCounter>
+			<InputConfigmrCancel icon="icon-edit"
+				button-id="search-nextbiblio-isbn"
+				value="9782080811158"
+				@confirm="searchNoticeFromIsbn()"/>
 			<ol>
 				<AppNavigationItem v-for="author in authors"
 					:key="author"
@@ -129,6 +129,7 @@ import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
+import InputConfirmCancel from '@nextcloud/vue/dist/Components/InputConfirmCancel'
 import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import '@nextcloud/dialogs/styles/toast.scss'
@@ -147,6 +148,7 @@ export default {
 		AppNavigationCounter,
 		DatetimePicker,
 		AppNavigationSettings,
+		InputConfirmCancel,
 	},
 	data() {
 		return {
@@ -244,8 +246,8 @@ export default {
 		/**
 		 * Search a new notice from isbn [we should create it if not already here]
 		 */
-		async searchNoticeFromIsbn(isbn) {
-			console.log('a search again')
+		async searchNoticeFromIsbn() {
+			var isbn = document.getElementById('search-nextbiblio-isbn').value
 			console.log(isbn)
 			for (var i=0; i<this.notes.length; i++) {
 				console.log(this.notes[i])
