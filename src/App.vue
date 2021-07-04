@@ -185,10 +185,12 @@ export default {
 			
 			var tmp = [];
 			for (var i=0; i<this.notes.length; i++) {
-				tmp.push(this.notes.authors);
+				console.log(this.notes[i].authors)
+				tmp.push(this.notes[i].authors)
+				
 			}
-			console.log(tmp);
-			this.authors = tmp.sort(); //.filter((el,i,a) => (i===a.indexOf(el)));
+			console.log(tmp)
+			this.authors = tmp.sort(); //.filter((el,i,a) => (i===a.indexOf(el)))
 		} catch (e) {
 			console.error(e)
 			showError(t('nextbiblio', 'Could not fetch notices'))
