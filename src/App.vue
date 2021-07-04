@@ -17,6 +17,13 @@
 					:title="author"
 					:class="{active: false}"
 					@click="searchNoticeFromAuthor()">
+					<template slot="actions">
+						<ActionInput
+							icon="icon-search"
+							class="author-search"
+							value="search title"
+							@click="searchNoticeFromTitle(author)"/>
+					</template>
 				</AppNavigationItem>
 			</ol>
 			<ul>
@@ -240,15 +247,32 @@ export default {
 				})
 			}
 		},
+		
 		/**
 		 * Search a new notice from isbn [we should create it if not already here]
 		 */
-		async searchNoticeFromIsbn() {
+		searchNoticeFromIsbn() {
 			var isbn = document.getElementById('search-nextbiblio-isbn').value
 			console.log(isbn)
 			for (var i=0; i<this.notes.length; i++) {
 				console.log(this.notes[i])
 				if (this.notes[i].isbn == isbn) {
+					openNotice(this.notes[i])
+					return
+				}
+			}
+			showError(t('nextbiblio', 'Isbn not found in Biblio'))
+		},
+		
+		/**
+		 * Search a new notice from isbn [we should create it if not already here]
+		 */
+		searchNoticeFromTitle(author) {
+			var title = document.getElementById('author').value
+			console.log(title)
+			for (var i=0; i<this.notes.length; i++) {
+				console.log(this.notes[i])
+				if (this.notes[i].title.match(title)) {
 					openNotice(this.notes[i])
 					return
 				}
