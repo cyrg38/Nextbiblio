@@ -17,13 +17,13 @@
 					:title="author"
 					:class="{active: false}"
 					@click="searchNoticeFromAuthor()">
-					<Actions>
+					<template slot="actions">
 						<ActionInput
 							icon="icon-search"
 							class="author-search"
 							value="search title"
 							@click="searchNoticeFromTitle(author)"/>
-					</Actions>
+					</template>
 				</AppNavigationItem>
 			</ol>
 			<ul>
@@ -196,7 +196,7 @@ export default {
 				
 			}
 			console.log(tmp)
-			this.authors = tmp.sort(); //.filter((el,i,a) => (i===a.indexOf(el)))
+			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
 		} catch (e) {
 			console.error(e)
 			showError(t('nextbiblio', 'Could not fetch notices'))
