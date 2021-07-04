@@ -17,13 +17,13 @@
 					:title="author"
 					:class="{active: false}"
 					@click="searchNoticeFromAuthor()">
-					<template slot="actions">
+					<Actions>
 						<ActionInput
 							icon="icon-search"
 							class="author-search"
 							value="search title"
 							@click="searchNoticeFromTitle(author)"/>
-					</template>
+					</Actions>
 				</AppNavigationItem>
 			</ol>
 			<ul>
