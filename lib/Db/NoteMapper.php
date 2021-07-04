@@ -73,5 +73,18 @@ class NoteMapper extends QBMapper {
 			->andWhere($qb->expr()->iLike('authors', $qb->createNamedParameter($authors)));
 		return $this->findEntities($qb);
 	}
+	
+	/**
+	 * @param string $userId
+	 * @return array
+	 */
+	public function findAuthors(string $userId): array {
+		/* @var $qb IQueryBuilder */
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('authors')
+			->from($this->getTableName())
+			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
+		return $this->findEntities($qb);
+	}
 
 }
