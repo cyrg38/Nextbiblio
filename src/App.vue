@@ -242,26 +242,19 @@ export default {
 			}
 		},
 		/**
-		 * Search a new note from Databanks (in background from php)
+		 * Search a new notice from isbn [we should create it if not already here]
 		 */
 		async searchNoticeFromIsbn(isbn) {
 			console.log('a search again')
 			console.log(isbn)
-			foreach (notice in notes) {
-				console.log('notice')
-				if (notice.isbn == isbn) {
-					openNotice(notice)
+			for (var i=0; i<this.notes.length; i++) {
+				console.log(this.notes[i])
+				if (this.notes[i].isbn == isbn) {
+					openNotice(this.notes[i])
 					return
 				}
 			}
-			searchedNotice.id=-1
-			this.notes.push(searchedNotice)
-		},
-		/**
-		 * Search a new note from Databanks (in background from php)
-		 */
-		async searchNoticeFromAuthor() {
-			console.log('a search again');
+			showError(t('nextbiblio', 'Isbn not found in Biblio'))
 		},
 		
 		/**
