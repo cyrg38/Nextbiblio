@@ -183,7 +183,7 @@ export default {
 			this.counter = response.data.length-1
 			this.notes = response.data
 			
-			const response = await axios.get(generateUrl('/apps/nextbiblio/authors'))
+			response = await axios.get(generateUrl('/apps/nextbiblio/authors'))
 			this.authors = response.data
 		} catch (e) {
 			console.error(e)
