@@ -29,22 +29,6 @@ class NoteMapper extends QBMapper {
 			->andWhere($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
 		return $this->findEntity($qb);
 	}
-
-	/**
-	 * @param string $isbn
-	 * @param string $userId
-	 * @return Entity|Note
-	 * @throws \OCP\AppFramework\Db\MultipleObjectsReturnedException
-	 * @throws DoesNotExistException
-	 */
-	public function findByISBN(string $isbn, string $userId) {
-		$qb = $this->db->getQueryBuilder();
-		$qb->select('*')
-		   ->from($this->getTableName())
-		   ->where($qb->expr()->eq('isbn', $qb->createNamedParameter($isbn)))
-		   ->andWhere($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
-		return $this->findEntity($qb);
-	}
 	
 	/**
 	 * @param string $userId
@@ -60,31 +44,4 @@ class NoteMapper extends QBMapper {
 		return $this->findEntities($qb);
 	}
 	
-	/**
-	 * @param string $userId
-	 * @return array
-	 */
-	public function findAllByAuthors(string $userId, string $authors): array {
-		/* @var $qb IQueryBuilder */
-		$qb = $this->db->getQueryBuilder();
-		$qb->select('*')
-			->from($this->getTableName())
-			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)))
-			->andWhere($qb->expr()->iLike('authors', $qb->createNamedParameter($authors)));
-		return $this->findEntities($qb);
-	}
-	
-	/**
-	 * @param string $userId
-	 * @return array
-	 */
-	public function findAuthors(string $userId): array {
-		/* @var $qb IQueryBuilder */
-		$qb = $this->db->getQueryBuilder();
-		$qb->select('authors')
-			->from($this->getTableName())
-			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
-		return $this->findEntities($qb);
-	}
-
 }
