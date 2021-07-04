@@ -39,6 +39,13 @@ class NoteController extends Controller {
 			return $this->service->find($id, $this->userId);
 		});
 	}
+	
+	/**
+	 * @NoAdminRequired
+	 */
+	public function showAuthors(): DataResponse {
+		return new DataResponse($this->service->findAuthors($this->userId));
+	}
 
 	/**
 	 * @NoAdminRequired
