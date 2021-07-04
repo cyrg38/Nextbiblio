@@ -2,7 +2,6 @@
 
 return [
 	'resources' => [
-		'author' => ['url' => '/authors'],
 		'note' => ['url' => '/notes'],
 		'note_api' => ['url' => '/api/0.1/notes']
 	],
