@@ -10,14 +10,13 @@
 			<ActionInput icon="icon-edit"
 				id="search-nextbiblio-isbn"
 				value="9782080811158"
-				@confirm="searchNoticeFromIsbn()"/>
+				@submit="searchNoticeFromIsbn()"/>
 			<ol>
 				<AppNavigationItem v-for="author in authors"
 					:key="author"
 					:title="author"
 					:class="{active: false}"
 					@click="searchNoticeFromAuthor()">
-					{{author}}
 				</AppNavigationItem>
 			</ol>
 			<ul>
@@ -320,7 +319,7 @@ export default {
 		width: 90%;
 		height: 100%;
 		padding-top: 40px;
-		padding-left: 20px;
+		padding-left: 30px;
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
@@ -333,7 +332,10 @@ export default {
 	input[type='text'] {
 		width: 60%;
 	}
-	
+	input[type='checkbox'] {
+		min-height: 15px;
+		width: max-content;
+	}
 	textarea {
 		flex-grow: 1;
 		height: 10%;
