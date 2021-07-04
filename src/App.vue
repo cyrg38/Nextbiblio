@@ -7,7 +7,7 @@
 				button-id="new-nextbiblio-button"
 				button-class="icon-add"
 				@click="newNotice" />
-			<InputConfigmrCancel icon="icon-edit"
+			<InputConfirmCancel icon="icon-edit"
 				id="search-nextbiblio-isbn"
 				value="9782080811158"
 				@confirm="searchNoticeFromIsbn()"/>
@@ -123,12 +123,10 @@
 
 <script>
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import InputConfirmCancel from '@nextcloud/vue/dist/Components/InputConfirmCancel'
 import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
@@ -140,12 +138,10 @@ export default {
 	name: 'App',
 	components: {
 		ActionButton,
-		ActionInput,
 		AppContent,
 		AppNavigation,
 		AppNavigationItem,
 		AppNavigationNew,
-		AppNavigationCounter,
 		DatetimePicker,
 		AppNavigationSettings,
 		InputConfirmCancel,
