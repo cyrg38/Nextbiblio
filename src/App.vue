@@ -8,7 +8,7 @@
 				button-class="icon-add"
 				@click="newNotice" />
 			<InputConfigmrCancel icon="icon-edit"
-				button-id="search-nextbiblio-isbn"
+				id="search-nextbiblio-isbn"
 				value="9782080811158"
 				@confirm="searchNoticeFromIsbn()"/>
 			<ol>
