@@ -332,10 +332,12 @@ export default {
 	input[type='text'] {
 		width: 60%;
 	}
+	
 	input[type='checkbox'] {
 		min-height: 15px;
 		width: max-content;
 	}
+	
 	textarea {
 		flex-grow: 1;
 		height: 10%;
