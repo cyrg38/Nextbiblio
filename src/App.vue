@@ -12,7 +12,7 @@
 				class="search-nextbiblio-isbn"
 				value="9782080811158"
 				@submit="searchNoticeFromIsbn()"/>
-			<ol>
+			<ul>
 				<AppNavigationItem v-for="author in authors"
 					:key="author"
 					:title="author"
@@ -26,7 +26,7 @@
 							@click="searchNoticeFromTitle(author)"/>
 					</template>
 				</AppNavigationItem>
-			</ol>
+			</ul>
 			<ul>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
@@ -252,7 +252,7 @@ export default {
 		 * Search a new notice from isbn [we should create it if not already here]
 		 */
 		searchNoticeFromIsbn() {
-			var isbn = document.getElementsByClassName('search-nextbiblio-isbn')[0].value
+			var isbn = $('.search-nextbiblio-isbn input[type="text"]')[0].value
 			console.log(isbn)
 			for (var i=0; i<this.notes.length; i++) {
 				console.log(this.notes[i])
