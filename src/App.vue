@@ -257,7 +257,7 @@ export default {
 			for (var i=0; i<this.notes.length; i++) {
 				console.log(this.notes[i])
 				if (this.notes[i].isbn == isbn) {
-					openNotice(this.notes[i])
+					this.openNotice(this.notes[i])
 					return
 				}
 			}
