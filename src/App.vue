@@ -9,6 +9,7 @@
 				@click="newNotice" />
 			<ActionInput icon="icon-edit"
 				id="search-nextbiblio-isbn"
+				class="search-nextbiblio-isbn"
 				value="9782080811158"
 				@submit="searchNoticeFromIsbn()"/>
 			<ol>
@@ -193,9 +194,8 @@ export default {
 			for (var i=0; i<this.notes.length; i++) {
 				console.log(this.notes[i].authors)
 				tmp.push(this.notes[i].authors)
-				
 			}
-			console.log(tmp)
+			//console.log(tmp)
 			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
 		} catch (e) {
 			console.error(e)
@@ -252,7 +252,7 @@ export default {
 		 * Search a new notice from isbn [we should create it if not already here]
 		 */
 		searchNoticeFromIsbn() {
-			var isbn = document.getElementById('search-nextbiblio-isbn').value
+			var isbn = document.getElementsByClassName('search-nextbiblio-isbn')[0].value
 			console.log(isbn)
 			for (var i=0; i<this.notes.length; i++) {
 				console.log(this.notes[i])
