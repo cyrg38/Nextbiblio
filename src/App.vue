@@ -11,7 +11,7 @@
 				value="9782080811158" 
 				@submit="searchNoticeFromIsbn(9782080811158)"/>
 			<AppNavigationCounter :highlighted="true">{{ counter }}</AppNavigationCounter>
-			<ul>
+			<ol>
 				<AppNavigationItem v-for="author in authors"
 					:key="author"
 					:title="author"
@@ -19,6 +19,8 @@
 					@click="searchNoticeFromAuthor()">
 					{{author}}
 				</AppNavigationItem>
+			</ol>
+			<ul>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
 					:title="note.title ? note.title : t('nextbiblio', 'New notice')"
@@ -187,7 +189,8 @@ export default {
 			for (var i=0; i<this.notes.length; i++) {
 				tmp.push(this.notes.authors);
 			}
-			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)));
+			console.log(tmp);
+			this.authors = tmp.sort(); //.filter((el,i,a) => (i===a.indexOf(el)));
 		} catch (e) {
 			console.error(e)
 			showError(t('nextbiblio', 'Could not fetch notices'))
@@ -243,9 +246,14 @@ export default {
 		 */
 		async searchNoticeFromIsbn(isbn) {
 			console.log('a search again')
-			const searchedNotice = await axios.get(generateUrl('/apps/nextbiblio/notes',isbn))
 			console.log(isbn)
-			console.log(searchedNotice)
+			foreach (notice in notes) {
+				console.log('notice')
+				if (notice.isbn == isbn) {
+					openNotice(notice)
+					return
+				}
+			}
 			searchedNotice.id=-1
 			this.notes.push(searchedNotice)
 		},
@@ -253,7 +261,7 @@ export default {
 		 * Search a new note from Databanks (in background from php)
 		 */
 		async searchNoticeFromAuthor() {
-			console.log('a search again')
+			console.log('a search again');
 		},
 		
 		/**
