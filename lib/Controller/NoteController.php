@@ -43,13 +43,6 @@ class NoteController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 */
-	public function showAuthors(): DataResponse {
-		return new DataResponse($this->service->findAuthors($this->userId));
-	}
-
-	/**
-	 * @NoAdminRequired
-	 */
 	public function searchByIsbn(string $isbn) {
 		$request = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . $isbn;
 		$response = file_get_contents($request);
