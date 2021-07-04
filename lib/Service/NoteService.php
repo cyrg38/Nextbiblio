@@ -57,6 +57,18 @@ class NoteService {
         }
     }
 
+  public function findAuthors(string $userId) {
+        try {
+            return $this->mapper->findAuthors($isbn, $userId);
+        // in order to be able to plug in different storage backends like files
+        // for instance it is a good idea to turn storage related exceptions
+        // into service related exceptions so controllers and service users
+        // have to deal with only one type of exception
+        } catch(Exception $e) {
+            $this->handleException($e);
+        }
+    }
+	
     public function create(string $title, string $content, string $userId) {
         $note = new Note();
          $note->setTitle($title);
