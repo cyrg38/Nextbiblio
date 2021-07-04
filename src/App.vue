@@ -12,11 +12,12 @@
 				@submit="searchNoticeFromIsbn(9782080811158)"/>
 			<AppNavigationCounter :highlighted="true">{{ counter }}</AppNavigationCounter>
 			<ul>
-				<AppNavigationItem v-for="index in [A,B,C]"
-					:key="index"
-					:title="index"
+				<AppNavigationItem v-for="author in authors"
+					:key="author"
+					:title="author"
+					:class="{active: false}"
 					@click="searchNoticeFromAuthor()">
-					{{index}}
+					{{author}}
 				</AppNavigationItem>
 				<AppNavigationItem v-for="note in notes"
 					:key="note.id"
@@ -41,7 +42,6 @@
 				title="Settings for Nextbiblio"
 				description="settings for calling API from user TOKEN on various ISBN DB"
 				doc-url="">
-				des trucs ici
 			</AppNavigationSettings>
 		</AppNavigation>
 		<AppContent>
@@ -148,6 +148,7 @@ export default {
 	},
 	data() {
 		return {
+			authors: [],
 			notes: [],
 			currentNoteId: null,
 			updating: false,
@@ -181,6 +182,9 @@ export default {
 			const response = await axios.get(generateUrl('/apps/nextbiblio/notes'))
 			this.counter = response.data.length-1
 			this.notes = response.data
+			
+			const response = await axios.get(generateUrl('/apps/nextbiblio/authors'))
+			this.authors = response.data
 		} catch (e) {
 			console.error(e)
 			showError(t('nextbiblio', 'Could not fetch notices'))
