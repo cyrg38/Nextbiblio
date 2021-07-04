@@ -183,8 +183,11 @@ export default {
 			this.counter = response.data.length-1
 			this.notes = response.data
 			
-			response = await axios.get(generateUrl('/apps/nextbiblio/authors'))
-			this.authors = response.data
+			var tmp = [];
+			for (var i=0; i<this.notes.length; i++) {
+				tmp.push(this.notes.authors);
+			}
+			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)));
 		} catch (e) {
 			console.error(e)
 			showError(t('nextbiblio', 'Could not fetch notices'))
