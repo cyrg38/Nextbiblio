@@ -18,30 +18,18 @@
 					:title="author.author"
 					:class="{active: false}">
 					<template slot="actions">
-						<ActionButton icon="icon-info" @click="alert('Info')">Info</ActionButton>
+						<ActionButton icon="icon-info" @click="console.log('Info')">Info</ActionButton>
 						<ActionInput
 							icon="icon-search"
 							class="author-search"
 							value="search title"
 							@click="searchNoticeFromTitle()"/>
-						<AppNavigationItem v-for="notice in author.notices"
+						<ActionButton v-for="notice in author.notices"
 							:key="notice.id"
 							:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
 							:class="{active: currentNoticeId === notice.id}"
-							@click="openNotice(notice)">
-							<template slot="actions">
-								<ActionButton v-if="notice.id === -1"
-									icon="icon-close"
-									@click="cancelNewNotice(notice)">
-									{{ t('nextbiblio', 'Cancel notice creation') }}
-								</ActionButton>
-								<ActionButton v-else
-									icon="icon-delete"
-									@click="deleteNotice(notice)">
-									{{ t('nextbiblio', 'Delete notice') }}
-								</ActionButton>
-							</template>
-						</AppNavigationItem>
+							@click="openNotice(notice)">{{ notice.title }}
+						</ActionButton>
 					</template>
 				</AppNavigationItem>
 			</ul>
