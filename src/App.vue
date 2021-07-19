@@ -62,46 +62,46 @@
 			</AppNavigationSettings>
 		</AppNavigation>
 		<AppContent>
-			<div v-if="currentNote">
+			<div v-if="currentNotice">
 				Title : <input ref="title"
-					v-model="currentNote.title"
+					v-model="currentNotice.title"
 					type="text"
 					:disabled="updating" />
 				ISBN : <input ref="isbn"
-					v-model="currentNote.isbn"
+					v-model="currentNotice.isbn"
 					type="text"
 					:disabled="updating" />
 				uuid : <input ref="uuid"
-					v-model="currentNote.uuid"
+					v-model="currentNotice.uuid"
 					type="text"
 					:disabled="updating" />
 				Authors : <input ref="authors"
-					v-model="currentNote.authors"
+					v-model="currentNotice.authors"
 					type="text"
 					:disabled="updating" />
 				Publishers : <input ref="publishers"
-					v-model="currentNote.publishers"
+					v-model="currentNotice.publishers"
 					type="text"
 					:disabled="updating" />
 				Identifiers : <input ref="identifiers"
-					v-model="currentNote.identifiers"
+					v-model="currentNotice.identifiers"
 					type="text"
 					:disabled="updating" />
 				Tags : <input ref="tags"
-					v-model="currentNote.tags"
+					v-model="currentNotice.tags"
 					type="text"
 					:disabled="updating" />
 				Languages : <input ref="languages"
-					v-model="currentNote.languages"
+					v-model="currentNotice.languages"
 					type="text"
 					:disabled="updating" />
 				Emplacement : <input ref="emplacement"
-					v-model="currentNote.emplacement"
+					v-model="currentNotice.emplacement"
 					type="text"
 					:disabled="updating"/>
-				Cover : <img v-if="currentNote.cover" 
+				Cover : <img v-if="currentNotice.cover" 
 					ref="cover"
-					:src="currentNote.cover"
+					:src="currentNotice.cover"
 					alt=""/>
 					<img v-else
 					src="https://via.placeholder.com/250x250"
@@ -109,19 +109,19 @@
 				TimeStamp : <DatetimePicker 
 					type="datetime"
 					ref="timestamp"
-					v-model="currentNote.timestamp"
+					v-model="currentNotice.timestamp"
 					:disabled="updating" />
 				Pubdate : <DatetimePicker
 					ref="pubdate"
-					v-model="currentNote.pubdate"
+					v-model="currentNotice.pubdate"
 					:disabled="updating" />
 				Lu : <input type="checkbox"
 					id="checkbox"
 					ref="lu"
 					:disabled="updating"
-					v-model="currentNote.lu"/>
+					v-model="currentNotice.lu"/>
 				<label for="checkbox">{{ checked }}</label>
-				<textarea ref="comments" v-model="currentNote.comments" placeholder="add multiple lines" :disabled="updating" />
+				<textarea ref="comments" v-model="currentNotice.comments" placeholder="add multiple lines" :disabled="updating" />
 				<input type="button"
 					class="primary"
 					:value="t('nextbiblio', 'Save')"
@@ -239,9 +239,9 @@ export default {
 		 */
 		saveNotice() {
 			if (this.currentNoticeId === -1) {
-				this.createNotice(this.currentNote)
+				this.createNotice(this.currentNotice)
 			} else {
-				this.updateNotice(this.currentNote)
+				this.updateNotice(this.currentNotice)
 			}
 		},
 		/**
