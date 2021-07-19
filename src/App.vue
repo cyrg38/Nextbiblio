@@ -28,7 +28,7 @@
 							:key="notice.id"
 							:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
 							:class="{active: currentNoticeId === notice.id}"
-							icon={ (notice.lu) ? "icon-category-enabled" : "icon-category-disabled" }
+							icon="{ (notice.lu!='') ? 'icon-category-enabled' : 'icon-category-disabled' }"
 							@click="openNotice(notice)">{{ notice.tags }}
 						</ActionButton>
 					</template>
