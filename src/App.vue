@@ -16,9 +16,9 @@
 				<AppNavigationItem v-for="author in authors"
 					:key="author"
 					:title="author"
-					:class="{active: false}"
-					@click="searchNoticeFromAuthor()">
+					:class="{active: false}">
 					<template slot="actions">
+						<CounterBubble slot="counter">99+</CounterBubble>
 						<ActionInput
 							icon="icon-search"
 							class="author-search"
@@ -139,6 +139,7 @@ import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
+import CounterBubble from '@nextcloud/vue/dist/Components/CounterBubble'
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
@@ -155,6 +156,7 @@ export default {
 		AppNavigationSettings,
 		ActionInput,
 		AppNavigationSpacer,
+		CounterBubble,
 	},
 	data() {
 		return {
