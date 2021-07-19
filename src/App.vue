@@ -28,7 +28,8 @@
 							:key="notice.id"
 							:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
 							:class="{active: currentNoticeId === notice.id}"
-							@click="openNotice(notice)">{{ notice.title }}
+							icon={ (notice.lu) ? "icon-category-enabled" : "icon-category-disabled" }
+							@click="openNotice(notice)">{{ notice.tags }}
 						</ActionButton>
 					</template>
 				</AppNavigationItem>
@@ -227,11 +228,10 @@ export default {
 			if (this.updating) {
 				return
 			}
-			console.log(notice.id)
 			this.currentNoticeId = notice.id
-			//this.$nextTick(() => {
-			//	this.$refs.comments.focus()
-			//})
+			this.$nextTick(() => {
+				this.$refs.comments.focus()
+			})
 		},
 		/**
 		 * Action tiggered when clicking the save button
@@ -239,9 +239,9 @@ export default {
 		 */
 		saveNotice() {
 			if (this.currentNoticeId === -1) {
-				this.createNote(this.currentNote)
+				this.createNotice(this.currentNote)
 			} else {
-				this.updateNote(this.currentNote)
+				this.updateNotice(this.currentNote)
 			}
 		},
 		/**
@@ -307,7 +307,7 @@ export default {
 		 * Create a new notice by sending the information to the server
 		 * @param {Object} notice Note object
 		 */
-		async createNote(notice) {
+		async createNotice(notice) {
 			this.updating = true
 			try {
 				const response = await axios.post(generateUrl('/apps/nextbiblio/notes'), notice)
