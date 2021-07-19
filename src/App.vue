@@ -18,34 +18,31 @@
 					:title="author"
 					:class="{active: false}">
 					<template slot="actions">
-						<AppNavigationIconBullet slot="icon" color="#0082c9"/>
+						<ActionButton icon="icon-info" @click="alert('Info')">Info</ActionButton>
 						<ActionInput
 							icon="icon-search"
 							class="author-search"
 							value="search title"
 							@click="searchNoticeFromTitle(author)"/>
-						<ActionButton icon="icon-info" @click="alert('Info')">
-							Info
-						</ActionButton>
 					</template>
 				</AppNavigationItem>
 			</ul>
 			<AppNavigationSpacer/>
 			<ul>
-				<AppNavigationItem v-for="note in notes"
-					:key="note.id"
-					:title="note.title ? note.title : t('nextbiblio', 'New notice')"
-					:class="{active: currentNoteId === note.id}"
-					@click="openNotice(note)">
+				<AppNavigationItem v-for="notice in notices"
+					:key="notice.id"
+					:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
+					:class="{active: currentNoteId === notice.id}"
+					@click="openNotice(notice)">
 					<template slot="actions">
-						<ActionButton v-if="note.id === -1"
+						<ActionButton v-if="notice.id === -1"
 							icon="icon-close"
-							@click="cancelNewNotice(note)">
+							@click="cancelNewNotice(notice)">
 							{{ t('nextbiblio', 'Cancel notice creation') }}
 						</ActionButton>
 						<ActionButton v-else
 							icon="icon-delete"
-							@click="deleteNotice(note)">
+							@click="deleteNotice(notice)">
 							{{ t('nextbiblio', 'Delete notice') }}
 						</ActionButton>
 					</template>
@@ -164,46 +161,44 @@ export default {
 	data() {
 		return {
 			authors: [],
-			notes: [],
-			currentNoteId: null,
+			notices: [],
+			currentNoticeId: null,
 			updating: false,
 			loading: true,
 		}
 	},
 	computed: {
 		/**
-		 * Return the currently selected note object
+		 * Return the currently selected notice object
 		 * @returns {Object|null}
 		 */
-		currentNote() {
-			if (this.currentNoteId === null) {
+		currentNotice() {
+			if (this.currentNoticeId === null) {
 				return null
 			}
-			return this.notes.find((note) => note.id === this.currentNoteId)
+			return this.notices.find((notice) => notice.id === this.currentNoticeId)
 		},
 		/**
-		 * Returns true if a note is selected and its title is not empty
+		 * Returns true if a notice is selected and its title is not empty
 		 * @returns {Boolean}
 		 */
 		savePossible() {
-			return this.currentNote && this.currentNote.title !== ''
+			return this.currentNotice && this.currentNotice.title !== ''
 		},
 	},
 	/**
-	 * Fetch list of notes when the component is loaded
+	 * Fetch list of notices when the component is loaded
 	 */
 	async mounted() {
 		try {
 			const response = await axios.get(generateUrl('/apps/nextbiblio/notes'))
 			this.counter = response.data.length-1
-			this.notes = response.data
+			this.notices = response.data
 			
 			var tmp = [];
-			for (var i=0; i<this.notes.length; i++) {
-				console.log(this.notes[i].authors)
-				tmp.push(this.notes[i].authors)
+			for (var i=0; i<this.notices.length; i++) {
+				tmp.push(this.notices[i].authors)
 			}
-			//console.log(tmp)
 			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
 		} catch (e) {
 			console.error(e)
@@ -213,21 +208,21 @@ export default {
 	},
 	methods: {
 		/**
-		 * Create a new note and focus the note content field automatically
-		 * @param {Object} note Note object
+		 * Create a new notice and focus the notice content field automatically
+		 * @param {Object} notice Note object
 		 */
-		openNotice(note) {
+		openNotice(notice) {
 			if (this.updating) {
 				return
 			}
-			this.currentNoteId = note.id
+			this.currentNoticeId = notice.id
 			this.$nextTick(() => {
 				this.$refs.comments.focus()
 			})
 		},
 		/**
 		 * Action tiggered when clicking the save button
-		 * create a new note or save
+		 * create a new notice or save
 		 */
 		saveNotice() {
 			if (this.currentNoteId === -1) {
@@ -237,14 +232,14 @@ export default {
 			}
 		},
 		/**
-		 * Create a new note and focus the note content field automatically
-		 * The note is not yet saved, therefore an id of -1 is used until it
+		 * Create a new notice and focus the notice content field automatically
+		 * The notice is not yet saved, therefore an id of -1 is used until it
 		 * has been persisted in the backend
 		 */
 		newNotice() {
 			if (this.currentNoteId !== -1) {
 				this.currentNoteId = -1
-				this.notes.push({
+				this.notices.push({
 					id: -1,
 					isbn: '',
 					timestamp : (new Date()).toISOString()
@@ -262,10 +257,10 @@ export default {
 		searchNoticeFromIsbn() {
 			var isbn = $('.search-nextbiblio-isbn input[type="text"]')[0].value
 			console.log(isbn)
-			for (var i=0; i<this.notes.length; i++) {
-				console.log(this.notes[i])
-				if (this.notes[i].isbn == isbn) {
-					this.openNotice(this.notes[i])
+			for (var i=0; i<this.notices.length; i++) {
+				console.log(this.notices[i])
+				if (this.notices[i].isbn == isbn) {
+					this.openNotice(this.notices[i])
 					return
 				}
 			}
@@ -278,10 +273,10 @@ export default {
 		searchNoticeFromTitle(author) {
 			var title = document.getElementById('author').value
 			console.log(title)
-			for (var i=0; i<this.notes.length; i++) {
-				console.log(this.notes[i])
-				if (this.notes[i].title.match(title)) {
-					openNotice(this.notes[i])
+			for (var i=0; i<this.notices.length; i++) {
+				console.log(this.notices[i])
+				if (this.notices[i].title.match(title)) {
+					openNotice(this.notices[i])
 					return
 				}
 			}
@@ -289,58 +284,58 @@ export default {
 		},
 		
 		/**
-		 * Abort creating a new note
+		 * Abort creating a new notice
 		 */
 		cancelNewNotice() {
-			this.notes.splice(this.notes.findIndex((note) => note.id === -1), 1)
+			this.notices.splice(this.notices.findIndex((notice) => notice.id === -1), 1)
 			this.currentNoteId = null
 		},
 		/**
-		 * Create a new note by sending the information to the server
-		 * @param {Object} note Note object
+		 * Create a new notice by sending the information to the server
+		 * @param {Object} notice Note object
 		 */
-		async createNote(note) {
+		async createNote(notice) {
 			this.updating = true
 			try {
-				const response = await axios.post(generateUrl('/apps/nextbiblio/notes'), note)
-				const index = this.notes.findIndex((match) => match.id === this.currentNoteId)
-				this.$set(this.notes, index, response.data)
+				const response = await axios.post(generateUrl('/apps/nextbiblio/notes'), notice)
+				const index = this.notices.findIndex((match) => match.id === this.currentNoteId)
+				this.$set(this.notices, index, response.data)
 				this.currentNoteId = response.data.id
 			} catch (e) {
 				console.error(e)
-				showError(t('nextbiblio', 'Could not create the note'))
+				showError(t('nextbiblio', 'Could not create the notice'))
 			}
 			this.updating = false
 		},
 		/**
-		 * Update an existing note on the server
-		 * @param {Object} note Note object
+		 * Update an existing notice on the server
+		 * @param {Object} notice Note object
 		 */
-		async updateNotice(note) {
+		async updateNotice(notice) {
 			this.updating = true
 			try {
-				await axios.put(generateUrl(`/apps/nextbiblio/notes/${note.id}`), note)
+				await axios.put(generateUrl(`/apps/nextbiblio/notes/${notice.id}`), notice)
 			} catch (e) {
 				console.error(e)
-				showError(t('nextbiblio', 'Could not update the note'))
+				showError(t('nextbiblio', 'Could not update the notice'))
 			}
 			this.updating = false
 		},
 		/**
-		 * Delete a note, remove it from the frontend and show a hint
-		 * @param {Object} note Note object
+		 * Delete a notice, remove it from the frontend and show a hint
+		 * @param {Object} notice Note object
 		 */
-		async deleteNotice(note) {
+		async deleteNotice(notice) {
 			try {
-				await axios.delete(generateUrl(`/apps/nextbiblio/notes/${note.id}`))
-				this.notes.splice(this.notes.indexOf(note), 1)
-				if (this.currentNoteId === note.id) {
+				await axios.delete(generateUrl(`/apps/nextbiblio/notes/${notice.id}`))
+				this.notices.splice(this.notices.indexOf(notice), 1)
+				if (this.currentNoteId === notice.id) {
 					this.currentNoteId = null
 				}
 				showSuccess(t('nextbiblio', 'Note deleted'))
 			} catch (e) {
 				console.error(e)
-				showError(t('nextbiblio', 'Could not delete the note'))
+				showError(t('nextbiblio', 'Could not delete the notice'))
 			}
 		},
 	},
