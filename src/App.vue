@@ -24,6 +24,24 @@
 							class="author-search"
 							value="search title"
 							@click="searchNoticeFromTitle(author)"/>
+						<AppNavigationItem v-for="notice in notices"
+							:key="notice.id"
+							:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
+							:class="{active: author === notice.authors}"
+							@click="openNotice(notice)">
+							<template slot="actions">
+								<ActionButton v-if="notice.id === -1"
+									icon="icon-close"
+									@click="cancelNewNotice(notice)">
+									{{ t('nextbiblio', 'Cancel notice creation') }}
+								</ActionButton>
+								<ActionButton v-else
+									icon="icon-delete"
+									@click="deleteNotice(notice)">
+									{{ t('nextbiblio', 'Delete notice') }}
+								</ActionButton>
+							</template>
+						</AppNavigationItem>
 					</template>
 				</AppNavigationItem>
 			</ul>
@@ -32,7 +50,7 @@
 				<AppNavigationItem v-for="notice in notices"
 					:key="notice.id"
 					:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
-					:class="{active: currentNoteId === notice.id}"
+					:class="{active: currentNoticeId === notice.id}"
 					@click="openNotice(notice)">
 					<template slot="actions">
 						<ActionButton v-if="notice.id === -1"
@@ -223,7 +241,7 @@ export default {
 		 * create a new notice or save
 		 */
 		saveNotice() {
-			if (this.currentNoteId === -1) {
+			if (this.currentNoticeId === -1) {
 				this.createNote(this.currentNote)
 			} else {
 				this.updateNote(this.currentNote)
@@ -235,8 +253,8 @@ export default {
 		 * has been persisted in the backend
 		 */
 		newNotice() {
-			if (this.currentNoteId !== -1) {
-				this.currentNoteId = -1
+			if (this.currentNoticeId !== -1) {
+				this.currentNoticeId = -1
 				this.notices.push({
 					id: -1,
 					isbn: '',
@@ -286,7 +304,7 @@ export default {
 		 */
 		cancelNewNotice() {
 			this.notices.splice(this.notices.findIndex((notice) => notice.id === -1), 1)
-			this.currentNoteId = null
+			this.currentNoticeId = null
 		},
 		/**
 		 * Create a new notice by sending the information to the server
@@ -296,9 +314,9 @@ export default {
 			this.updating = true
 			try {
 				const response = await axios.post(generateUrl('/apps/nextbiblio/notes'), notice)
-				const index = this.notices.findIndex((match) => match.id === this.currentNoteId)
+				const index = this.notices.findIndex((match) => match.id === this.currentNoticeId)
 				this.$set(this.notices, index, response.data)
-				this.currentNoteId = response.data.id
+				this.currentNoticeId = response.data.id
 			} catch (e) {
 				console.error(e)
 				showError(t('nextbiblio', 'Could not create the notice'))
@@ -327,8 +345,8 @@ export default {
 			try {
 				await axios.delete(generateUrl(`/apps/nextbiblio/notes/${notice.id}`))
 				this.notices.splice(this.notices.indexOf(notice), 1)
-				if (this.currentNoteId === notice.id) {
-					this.currentNoteId = null
+				if (this.currentNoticeId === notice.id) {
+					this.currentNoticeId = null
 				}
 				showSuccess(t('nextbiblio', 'Note deleted'))
 			} catch (e) {
