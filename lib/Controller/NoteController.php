@@ -74,28 +74,26 @@ class NoteController extends Controller {
      * @NoAdminRequired
      *
      * @param string $title
-     * @param string $emplacement
+     * @param string|null $emplacement
      * @param string $lu
-     * @param string $period
-     * @param string $uuid
-     * @param string $publisher
+     * @param string|null $period
+     * @param string|null $uuid
+     * @param string|null $publisher
      * @param string $isbn
-     * @param string $identifiers
+     * @param string|null $identifiers
      * @param string $authors
-     * @param string $timestamp
+     * @param string|null $timestamp
      * @param string $pubdate
-     * @param string $tags
-     * @param string $languages
-     * @param string $cover
-     * @param text $comments
+     * @param string|null $tags
+     * @param string|null $languages
+     * @param string|null $cover
+     * @param text|null $comments
      */
-    public function create(string $title, string $emplacement, string $_lu, string $period,
-                           string $uuid, string $publisher, string $isbn, string $identifiers,
-                           string $authors, string $timestamp, string $pubdate, string $tags, string $languages,
-                           string $cover, text $comments, string $userId) {
-        return $this->service->create( $title,  $emplacement, $lu, $period, $uuid,  $publisher,  $isbn,  
-				      $identifiers, $authors,  $timestamp,  $pubdate,  $tags,  
-				      $languages, $cover, $comments, $this->userId);
+	public function create(string $title, ?string $emplacement, string $lu, ?string $period, ?string $uuid, 
+		?string $publisher, string $isbn, ?string $identifiers, string $authors, string $timestamp, 
+		string $pubdate, ?string $tags, ?string $languages, ?string $cover, ?text $comments, string $userId) {
+		return $this->service->create( $title,  $emplacement, $lu, $period, $uuid, $publisher, $isbn, $identifiers,
+			$authors, $timestamp, $pubdate, $tags, $languages, $cover, $comments, $this->userId);
     }
 
     /**
@@ -103,32 +101,29 @@ class NoteController extends Controller {
      *
      * @param int $id
      * @param string $title
-     * @param string $emplacement
+     * @param string|null $emplacement
      * @param string $lu
-     * @param string $period
-     * @param string $uuid
-     * @param string $publisher
+     * @param string|null $period
+     * @param string|null $uuid
+     * @param string|null $publisher
      * @param string $isbn
-     * @param string $identifiers
+     * @param string|null $identifiers
      * @param string $authors
      * @param string $timestamp
-     * @param string $pubdate
-     * @param string $tags
-     * @param string $languages
-     * @param string $cover
-     * @param text $comments
+     * @param string|null $pubdate
+     * @param string|null $tags
+     * @param string|null $languages
+     * @param string|null $cover
+     * @param text|null $comments
      */
-    public function update(int $id, string $title, string $emplacement, string $lu, string $period, string $uuid, 
-			   string $publisher, string $isbn, string $identifiers, string $authors, string $timestamp, 
-			   string $pubdate, string $tags, string $languages, string $cover, text $comments) {
-        return $this->handleNotFound(function () 
-		use ($id, $title,  $emplacement, $lu, $period,  $uuid,  $publisher,  $isbn,  $identifiers,
-                            $authors,  $timestamp,  $pubdate,  $tags,  $languages,
-                            $cover, $comments) {
-		return $this->service->update($id, $title,  $emplacement, $lu, 
-                            $period,  $uuid,  $publisher,  $isbn,  $identifiers,
-                            $authors,  $timestamp,  $pubdate,  $tags,  $languages,
-                            $cover,  $comments, $this->userId);
+	public function update(int $id, string $title, ?string $emplacement, string $lu, ?string $period, ?string $uuid, 
+			?string $publisher, string $isbn, ?string $identifiers, string $authors, string $timestamp, 
+			?string $pubdate, ?string $tags, ?string $languages, ?string $cover, ?text $comments) {
+		return $this->handleNotFound(function () 
+			use ($id, $title, $emplacement, $lu, $period, $uuid, $publisher, $isbn, $identifiers,
+				$authors, $timestamp, $pubdate, $tags, $languages, $cover, $comments) {
+			return $this->service->update($id, $title,  $emplacement, $lu, $period, $uuid, $publisher, $isbn, $identifiers,
+				$authors, $timestamp, $pubdate, $tags, $languages, $cover, $comments, $this->userId);
 		});
     }
 

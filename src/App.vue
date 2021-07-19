@@ -18,7 +18,6 @@
 					:title="author.author"
 					:class="{active: false}">
 					<template slot="actions">
-						<ActionButton icon="icon-info" @click="console.log('Info')">Info</ActionButton>
 						<ActionInput
 							icon="icon-search"
 							class="author-search"
