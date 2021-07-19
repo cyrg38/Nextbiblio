@@ -18,12 +18,15 @@
 					:title="author"
 					:class="{active: false}">
 					<template slot="actions">
-						<CounterBubble slot="counter">99+</CounterBubble>
+						<AppNavigationIconBullet slot="icon" color="#0082c9"/>
 						<ActionInput
 							icon="icon-search"
 							class="author-search"
 							value="search title"
 							@click="searchNoticeFromTitle(author)"/>
+						<ActionButton icon="icon-info" @click="alert('Info')">
+							Info
+						</ActionButton>
 					</template>
 				</AppNavigationItem>
 			</ul>
@@ -139,7 +142,7 @@ import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
-import CounterBubble from '@nextcloud/vue/dist/Components/CounterBubble'
+import AppNavigationIconBullet from '@nextcloud/vue/dist/Components/AppNavigationIconBullet'
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
@@ -156,7 +159,7 @@ export default {
 		AppNavigationSettings,
 		ActionInput,
 		AppNavigationSpacer,
-		CounterBubble,
+		AppNavigationIconBullet,
 	},
 	data() {
 		return {
