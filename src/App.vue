@@ -13,7 +13,7 @@
 				value="9782080811158"
 				@submit="searchNoticeFromIsbn()"/>
 			<ul>
-				<ListItem v-for="author in authors"
+				<AppNavigationItem v-for="author in authors"
 					:key="author.author"
 					:title="author.author"
 					:class="{active: false}">
@@ -43,7 +43,7 @@
 							</template>
 						</AppNavigationItem>
 					</template>
-				</ListItem>
+				</AppNavigationItem>
 			</ul>
 			<AppNavigationSpacer/>
 			<!--ul>
@@ -157,7 +157,6 @@ import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
-import ListItem from '@nextcloud/vue/dist/Components/ListItem'
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
@@ -174,7 +173,6 @@ export default {
 		AppNavigationSettings,
 		ActionInput,
 		AppNavigationSpacer,
-		ListItem,
 	},
 	data() {
 		return {
