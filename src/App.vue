@@ -13,9 +13,9 @@
 				value="9782080811158"
 				@submit="searchNoticeFromIsbn()"/>
 			<ul>
-				<AppNavigationItem v-for="author in authors"
-					:key="author"
-					:title="author"
+				<ListItem v-for="author in authors"
+					:key="author.author"
+					:title="author.author"
 					:class="{active: false}">
 					<template slot="actions">
 						<ActionButton icon="icon-info" @click="alert('Info')">Info</ActionButton>
@@ -23,11 +23,11 @@
 							icon="icon-search"
 							class="author-search"
 							value="search title"
-							@click="searchNoticeFromTitle(author)"/>
-						<AppNavigationItem v-for="notice in notices"
+							@click="searchNoticeFromTitle()"/>
+						<AppNavigationItem v-for="notice in author.notices"
 							:key="notice.id"
 							:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
-							:class="{active: author === notice.authors}"
+							:class="{active: currentNoticeId === notice.id}"
 							@click="openNotice(notice)">
 							<template slot="actions">
 								<ActionButton v-if="notice.id === -1"
@@ -43,10 +43,10 @@
 							</template>
 						</AppNavigationItem>
 					</template>
-				</AppNavigationItem>
+				</ListItem>
 			</ul>
 			<AppNavigationSpacer/>
-			<ul>
+			<!--ul>
 				<AppNavigationItem v-for="notice in notices"
 					:key="notice.id"
 					:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
@@ -65,7 +65,7 @@
 						</ActionButton>
 					</template>
 				</AppNavigationItem>
-			</ul>
+			</ul-->
 			<AppNavigationSettings
 				title="Settings for Nextbiblio"
 				description="settings for calling API from user TOKEN on various ISBN DB"
@@ -157,6 +157,7 @@ import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
+import ListItem from '@nextcloud/vue/dist/Components/ListItem'
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
@@ -173,6 +174,7 @@ export default {
 		AppNavigationSettings,
 		ActionInput,
 		AppNavigationSpacer,
+		ListItem,
 	},
 	data() {
 		return {
@@ -216,6 +218,14 @@ export default {
 				tmp.push(this.notices[i].authors)
 			}
 			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
+			for (var i=0; i<this.authors.length; i++) {
+				this.authors[i] = {"author" : this.authors[i], "notices" : []}
+				for (var j=0; j<this.notices.length; j++) {
+					if (this.authors[i].author == this.notices[j].authors) {
+						this.authors[i].notices.push(this.notices[j])
+					}
+				}
+			}
 		} catch (e) {
 			console.error(e)
 			showError(t('nextbiblio', 'Could not fetch notices'))
