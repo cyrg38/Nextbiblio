@@ -227,10 +227,11 @@ export default {
 			if (this.updating) {
 				return
 			}
+			console.log(notice.id)
 			this.currentNoticeId = notice.id
-			this.$nextTick(() => {
-				this.$refs.comments.focus()
-			})
+			//this.$nextTick(() => {
+			//	this.$refs.comments.focus()
+			//})
 		},
 		/**
 		 * Action tiggered when clicking the save button
