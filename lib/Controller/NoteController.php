@@ -57,7 +57,7 @@ class NoteController extends Controller {
 			$infos['authors'] = $book->volumeInfo->authors[0];
 			$infos['languages'] = $book->volumeInfo->language;
 			$infos['pubdate'] = $book->volumeInfo->publishedDate;
-			$infos['timestamp'] = '2021-06-26T17:03:00+02:00';
+			$infos['timestamp'] = '2021-06-26 17:03:00';
 			$infos['pages'] = $book->volumeInfo->pageCount;
 			$infos['tags'] = $book->categories;
 			$infos['comments'] = $book->searchInfo->textSnippet;
