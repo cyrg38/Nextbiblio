@@ -27,7 +27,7 @@
 							:key="notice.id"
 							:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
 							:class="{active: currentNoticeId === notice.id}"
-							icon="{({notice.lu}) ? 'icon-category-enabled':'icon-category-disabled'}"
+							icon="{notice.lu ? 'icon-category-enabled':'icon-category-disabled'}"
 							@click="openNotice(notice)">{{ notice.tags }}
 						</ActionButton>
 					</template>
@@ -106,12 +106,13 @@
 					src="https://via.placeholder.com/250x250"
 					alt=""/><br/>
 				TimeStamp : <DatetimePicker 
-					type="datetime"
+					type="date"
 					ref="timestamp"
 					v-model="currentNotice.timestamp"
 					:disabled="updating" />
 				Pubdate : <DatetimePicker
 					ref="pubdate"
+					type="date"
 					v-model="currentNotice.pubdate"
 					:disabled="updating" />
 				Lu : <input type="checkbox"
