@@ -348,7 +348,7 @@ export default {
 				if (this.currentNoticeId === notice.id) {
 					this.currentNoticeId = null
 				}
-				showSuccess(t('nextbiblio', 'Note deleted'))
+				showSuccess(t('nextbiblio', 'Notice deleted'))
 			} catch (e) {
 				console.error(e)
 				showError(t('nextbiblio', 'Could not delete the notice'))

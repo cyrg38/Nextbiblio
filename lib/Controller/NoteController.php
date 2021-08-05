@@ -74,7 +74,7 @@ class NoteController extends Controller {
      *
      * @param string $title
      * @param string|null $emplacement
-     * @param string $lu
+     * @param boolean $lu
      * @param string|null $period
      * @param string|null $uuid
      * @param string|null $publisher
@@ -88,7 +88,7 @@ class NoteController extends Controller {
      * @param string|null $cover
      * @param text|null $comments
      */
-	public function create(string $title, ?string $emplacement, string $lu, ?string $period, ?string $uuid, 
+	public function create(string $title, ?string $emplacement, boolean $lu, ?string $period, ?string $uuid, 
 		?string $publisher, string $isbn, ?string $identifiers, string $authors, string $timestamp, 
 		string $pubdate, ?string $tags, ?string $languages, ?string $cover, ?text $comments, string $userId) {
 		return $this->service->create( $title,  $emplacement, $lu, $period, $uuid, $publisher, $isbn, $identifiers,
@@ -101,7 +101,7 @@ class NoteController extends Controller {
      * @param int $id
      * @param string $title
      * @param string|null $emplacement
-     * @param string $lu
+     * @param boolean $lu
      * @param string|null $period
      * @param string|null $uuid
      * @param string|null $publisher
@@ -115,7 +115,7 @@ class NoteController extends Controller {
      * @param string|null $cover
      * @param text|null $comments
      */
-	public function update(int $id, string $title, ?string $emplacement, string $lu, ?string $period, ?string $uuid, 
+	public function update(int $id, string $title, ?string $emplacement, boolean $lu, ?string $period, ?string $uuid, 
 			?string $publisher, string $isbn, ?string $identifiers, string $authors, string $timestamp, 
 			?string $pubdate, ?string $tags, ?string $languages, ?string $cover, ?text $comments) {
 		return $this->handleNotFound(function () 
