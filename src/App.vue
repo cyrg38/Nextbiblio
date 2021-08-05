@@ -202,8 +202,8 @@ export default {
 			
 			var tmp = [];
 			for (var i=0; i<this.notices.length; i++) {
-				console.log(this.notices[i].timestamp)
 				this.notices[i].timestamp = new Date(this.notices[i].timestamp)
+				this.notices[i].pubdate = new Date(this.notices[i].pubdate)
 				tmp.push(this.notices[i].authors)
 			}
 			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
@@ -232,7 +232,8 @@ export default {
 			}
 			this.currentNoticeId = notice.id
 			this.$nextTick(() => {
-				this.$refs.comments.focus()
+				console.log(this.$refs)
+				this.$refs.title.focus()
 			})
 		},
 		/**
@@ -382,8 +383,12 @@ export default {
 	
 	textarea {
 		flex-grow: 1;
-		height: 10%;
-		width: 100%;
+		height: 300px;
+		width: 90%;
+	}
+	
+	input.primary {
+		width: 10%;
 	}
 </style>
 
