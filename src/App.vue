@@ -201,6 +201,8 @@ export default {
 			
 			var tmp = [];
 			for (var i=0; i<this.notices.length; i++) {
+				console.log(this.notices[i].timestamp)
+				this.notices[i].timestamp = new Date(this.notices[i].timestamp)
 				tmp.push(this.notices[i].authors)
 			}
 			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
