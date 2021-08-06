@@ -17,6 +17,9 @@
 					:key="author.author"
 					:title="author.author"
 					:class="{active: false}">
+					<template #counter>
+							{{author.notices.length}}
+					</template>
 					<template slot="actions">
 						<ActionInput
 							icon="icon-search"
