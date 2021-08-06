@@ -49,20 +49,38 @@ class NoteService {
 							string $tags, string $languages, string $cover, text $comments, string $userId) {
 		$note = new Note();
 		$note->setTitle($title);
-		$note->setEmplacement($emplacement);
-		$note->setLu($lu);
-		$note->setPeriod($period);
-		$note->setUuid($uuid);
-		$note->setPublisher($publisher);
 		$note->setIsbn($isbn);
-		$note->setIdentifiers($identifiers);
 		$note->setAuthors($authors);
+		$note->setLu($lu);
 		$note->setTimestamp($timestamp);
 		$note->setPubdate($pubdate);
-		$note->setTags($tags);
-		$note->setLanguages($languages);
-		$note->setCover($cover);
-		$note->setComments($comments);
+		if ($emplacement != null) {
+			$note->setEmplacement($emplacement);
+		}
+		if ($period != null) {
+			$note->setPeriod($period);
+		}
+		if ($uuid != null) {
+			$note->setUuid($uuid);
+		}
+		if ($publisher != null) {
+			$note->setPublisher($publisher);
+		}
+		if ($identifiers != null) {
+			$note->setIdentifiers($identifiers);
+		}
+		if ($tags != null) {
+			$note->setTags($tags);
+		}
+		if ($languages != null) {
+			$note->setLanguages($languages);
+		}
+		if ($cover != null) {
+			$note->setCover($cover);
+		}
+		if ($comments != null) {
+			$note->setComments($comments);
+		}
 		$note->setUserId($userId);
 		return $this->mapper->insert($note);
 	}
