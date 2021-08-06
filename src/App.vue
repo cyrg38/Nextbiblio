@@ -33,7 +33,7 @@
 					</template>
 				</AppNavigationItem>
 			</ul>
-			<AppNavigationSpacer/>
+			<!--AppNavigationSpacer/-->
 			<!--ul>
 				<AppNavigationItem v-for="notice in notices"
 					:key="notice.id"
@@ -54,11 +54,11 @@
 					</template>
 				</AppNavigationItem>
 			</ul-->
-			<AppNavigationSettings
+			<!--AppNavigationSettings
 				title="Settings for Nextbiblio"
 				description="settings for calling API from user TOKEN on various ISBN DB"
 				doc-url="">
-			</AppNavigationSettings>
+			</AppNavigationSettings-->
 		</AppNavigation>
 		<AppContent>
 			<div v-if="currentNotice">
