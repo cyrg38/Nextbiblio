@@ -62,11 +62,11 @@
 		</AppNavigation>
 		<AppContent>
 			<div v-if="currentNotice">
-				Title : <input ref="title"
+				Title * : <input ref="title"
 					v-model="currentNotice.title"
 					type="text"
 					:disabled="updating" />
-				ISBN : <input ref="isbn"
+				ISBN * : <input ref="isbn"
 					v-model="currentNotice.isbn"
 					type="text"
 					:disabled="updating" />
@@ -74,7 +74,7 @@
 					v-model="currentNotice.uuid"
 					type="text"
 					:disabled="updating" />
-				Authors : <input ref="authors"
+				Authors * : <input ref="authors"
 					v-model="currentNotice.authors"
 					type="text"
 					:disabled="updating" />
@@ -86,7 +86,7 @@
 					v-model="currentNotice.identifiers"
 					type="text"
 					:disabled="updating" />
-				Tags : <input ref="tags"
+				Tags * : <input ref="tags"
 					v-model="currentNotice.tags"
 					type="text"
 					:disabled="updating" />
@@ -105,7 +105,7 @@
 					<img v-else
 					src="https://via.placeholder.com/250x250"
 					alt=""/><br/>
-				TimeStamp : <DatetimePicker 
+				TimeStamp * : <DatetimePicker 
 					type="date"
 					ref="timestamp"
 					v-model="currentNotice.timestamp"
@@ -115,7 +115,7 @@
 					type="date"
 					v-model="currentNotice.pubdate"
 					:disabled="updating" />
-				Lu : <input type="checkbox"
+				Lu * : <input type="checkbox"
 					id="checkbox"
 					ref="lu"
 					:disabled="updating"
@@ -202,8 +202,8 @@ export default {
 			
 			var tmp = [];
 			for (var i=0; i<this.notices.length; i++) {
-				this.notices[i].timestamp = new Date(this.notices[i].timestamp)
-				this.notices[i].pubdate = new Date(this.notices[i].pubdate)
+				this.notices[i].timestamp = (new Date(this.notices[i].timestamp)).toISOString()
+				this.notices[i].pubdate = (new Date(this.notices[i].pubdate)).toISOString()
 				tmp.push(this.notices[i].authors)
 			}
 			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
