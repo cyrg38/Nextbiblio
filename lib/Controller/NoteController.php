@@ -117,7 +117,7 @@ class NoteController extends Controller {
      */
 	public function update(int $id, string $title, ?string $emplacement, bool $lu, ?string $period, ?string $uuid, 
 			?string $publisher, string $isbn, ?string $identifiers, string $authors, string $timestamp, 
-			?string $pubdate, ?string $tags, ?string $languages, ?string $cover, ?text $comments) {
+			string $pubdate, ?string $tags, ?string $languages, ?string $cover, ?string $comments) {
 		return $this->handleNotFound(function () 
 			use ($id, $title, $emplacement, $lu, $period, $uuid, $publisher, $isbn, $identifiers,
 				$authors, $timestamp, $pubdate, $tags, $languages, $cover, $comments) {
