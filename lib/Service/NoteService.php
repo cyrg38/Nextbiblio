@@ -91,20 +91,38 @@ class NoteService {
 		try {
 			$note = $this->mapper->find($id, $userId);
 			$note->setTitle($title);
-			$note->setEmplacement($emplacement);
-			$note->setLu($lu);
-			$note->setPeriod($period);
-			$note->setUuid($uuid);
-			$note->setPublisher($publisher);
 			$note->setIsbn($isbn);
-			$note->setIdentifiers($identifiers);
 			$note->setAuthors($authors);
-			$note->setTimestamp($timestamp);
-			$note->setPubdate($pubdate);
-			$note->setTags($tags);
-			$note->setLanguages($languages);
-			$note->setCover($cover);
-			$note->setComments($comments);
+			$note->setLu($lu);
+			$note->setTimestamp(date('Y-m-d',strtotime($timestamp)));
+			$note->setPubdate(date('Y-m-d',strtotime($pubdate)));
+			if ($emplacement != null) {
+				$note->setEmplacement($emplacement);
+			}
+			if ($period != null) {
+				$note->setPeriod($period);
+			}
+			if ($uuid != null) {
+				$note->setUuid($uuid);
+			}
+			if ($publisher != null) {
+				$note->setPublisher($publisher);
+			}
+			if ($identifiers != null) {
+				$note->setIdentifiers($identifiers);
+			}
+			if ($tags != null) {
+				$note->setTags($tags);
+			}
+			if ($languages != null) {
+				$note->setLanguages($languages);
+			}
+			if ($cover != null) {
+				$note->setCover($cover);
+			}
+			if ($comments != null) {
+				$note->setComments($comments);
+			}
 			return $this->mapper->update($note);
 		} catch(Exception $e) {
 			$this->handleException($e);
