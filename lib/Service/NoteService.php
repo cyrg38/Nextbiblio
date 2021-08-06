@@ -52,8 +52,8 @@ class NoteService {
 		$note->setIsbn($isbn);
 		$note->setAuthors($authors);
 		$note->setLu($lu);
-		$note->setTimestamp($timestamp);
-		$note->setPubdate($pubdate);
+		$note->setTimestamp(date('Y-m-d',strtotime($timestamp));
+		$note->setPubdate(date('Y-m-d',strtotime($pubdate));
 		if ($emplacement != null) {
 			$note->setEmplacement($emplacement);
 		}
