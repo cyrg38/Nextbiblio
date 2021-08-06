@@ -206,7 +206,9 @@ export default {
 			
 			var tmp = [];
 			for (var i=0; i<this.notices.length; i++) {
+				console.log(this.notices[i].timestamp)
 				this.notices[i].timestamp = (new Date(this.notices[i].timestamp)).toISOString()
+				console.log(this.notices[i].timestamp)
 				this.notices[i].pubdate = (new Date(this.notices[i].pubdate)).toISOString()
 				tmp.push(this.notices[i].authors)
 			}
@@ -263,7 +265,6 @@ export default {
 					id: -1,
 					isbn: '',
 					timestamp : (new Date()).toISOString()
-					
 				})
 				this.$nextTick(() => {
 					this.$refs.isbn.focus()
@@ -325,6 +326,7 @@ export default {
 				console.error(e)
 				showError(t('nextbiblio', 'Could not create the notice'))
 			}
+			mounted()
 			this.updating = false
 		},
 		/**
