@@ -203,7 +203,7 @@ export default {
 			var tmp = [];
 			for (var i=0; i<this.notices.length; i++) {
 				console.log(this.notices[i].timestamp)
-				this.notices[i].timestamp = (new Date(this.notices[i].timestamp)).toISOString()
+				this.notices[i].timestamp = new Date(this.notices[i].timestamp)
 				console.log(this.notices[i].timestamp)
 				this.notices[i].pubdate = new Date(this.notices[i].pubdate)
 				tmp.push(this.notices[i].authors)
