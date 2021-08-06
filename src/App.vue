@@ -362,7 +362,6 @@ export default {
 <style scoped>
 	#app-content-vue > div {
 		width: 90%;
-		height: 100%;
 		padding-top: 40px;
 		padding-left: 30px;
 		display: flex;
