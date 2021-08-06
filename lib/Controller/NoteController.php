@@ -89,7 +89,7 @@ class NoteController extends Controller {
      * @param text|null $comments
      */
 	public function create(string $title, ?string $emplacement, bool $lu, ?string $period, ?string $uuid, 
-		?string $publisher, string $isbn, ?string $identifiers, string $authors, ?string $timestamp, 
+		?string $publisher, string $isbn, ?string $identifiers, string $authors, string $timestamp, 
 		?string $pubdate, string $tags, ?string $languages, ?string $cover, ?text $comments) {
 		return $this->service->create( $title,  $emplacement, $lu, $period, $uuid, $publisher, $isbn, $identifiers,
 			$authors, $timestamp, $pubdate, $tags, $languages, $cover, $comments, $this->userId);
