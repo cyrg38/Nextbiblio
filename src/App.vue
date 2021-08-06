@@ -98,6 +98,10 @@
 					v-model="currentNotice.emplacement"
 					type="text"
 					:disabled="updating"/>
+				Période : <input ref="period"
+					v-model="currentNotice.period"
+					type="text"
+					:disabled="updating"/>
 				Cover : <img v-if="currentNotice.cover" 
 					ref="cover"
 					:src="currentNotice.cover"
@@ -366,10 +370,6 @@ export default {
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
-	}
-	
-	#searchingIsbn {
-		display: none;
 	}
 	
 	input[type='text'] {
