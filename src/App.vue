@@ -112,12 +112,12 @@
 				TimeStamp * : <DatetimePicker 
 					type="date"
 					ref="timestamp"
-					v-model="currentNotice.timestamp"
+					v-model="(new Date(currentNotice.timestamp)).toISOString()"
 					:disabled="updating" />
 				Pubdate : <DatetimePicker
 					ref="pubdate"
 					type="date"
-					v-model="currentNotice.pubdate"
+					v-model="(new Date(currentNotice.pubdate)).toISOString()"
 					:disabled="updating" />
 				Lu * : <input type="checkbox"
 					id="checkbox"
