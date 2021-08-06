@@ -33,32 +33,6 @@
 					</template>
 				</AppNavigationItem>
 			</ul>
-			<!--AppNavigationSpacer/-->
-			<!--ul>
-				<AppNavigationItem v-for="notice in notices"
-					:key="notice.id"
-					:title="notice.title ? notice.title : t('nextbiblio', 'New notice')"
-					:class="{active: currentNoticeId === notice.id}"
-					@click="openNotice(notice)">
-					<template slot="actions">
-						<ActionButton v-if="notice.id === -1"
-							icon="icon-close"
-							@click="cancelNewNotice(notice)">
-							{{ t('nextbiblio', 'Cancel notice creation') }}
-						</ActionButton>
-						<ActionButton v-else
-							icon="icon-delete"
-							@click="deleteNotice(notice)">
-							{{ t('nextbiblio', 'Delete notice') }}
-						</ActionButton>
-					</template>
-				</AppNavigationItem>
-			</ul-->
-			<!--AppNavigationSettings
-				title="Settings for Nextbiblio"
-				description="settings for calling API from user TOKEN on various ISBN DB"
-				doc-url="">
-			</AppNavigationSettings-->
 		</AppNavigation>
 		<AppContent>
 			<div v-if="currentNotice">
