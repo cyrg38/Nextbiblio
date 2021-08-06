@@ -112,12 +112,12 @@
 				TimeStamp * : <DatetimePicker 
 					type="date"
 					ref="timestamp"
-					v-model="(new Date(currentNotice.timestamp)).toISOString()"
+					v-model="currentNotice.timestamp"
 					:disabled="updating" />
 				Pubdate : <DatetimePicker
 					ref="pubdate"
 					type="date"
-					v-model="(new Date(currentNotice.pubdate)).toISOString()"
+					v-model="currentNotice.pubdate"
 					:disabled="updating" />
 				Lu * : <input type="checkbox"
 					id="checkbox"
@@ -205,7 +205,7 @@ export default {
 				console.log(this.notices[i].timestamp)
 				this.notices[i].timestamp = (new Date(this.notices[i].timestamp)).toISOString()
 				console.log(this.notices[i].timestamp)
-				this.notices[i].pubdate = (new Date(this.notices[i].pubdate)).toISOString()
+				this.notices[i].pubdate = new Date(this.notices[i].pubdate)
 				tmp.push(this.notices[i].authors)
 			}
 			this.authors = tmp.sort().filter((el,i,a) => (i===a.indexOf(el)))
