@@ -44,9 +44,9 @@ class NoteService {
 		}
 	}
 
-	public function create(string $title, string $emplacement, bool $lu, string $period, string $uuid, string $publisher,
-							string $isbn, string $identifiers, string $authors, string $timestamp, string $pubdate,
-							string $tags, string $languages, string $cover, text $comments, string $userId) {
+	public function create(string $title, ?string $emplacement, bool $lu, ?string $period, ?string $uuid, 
+							?string $publisher, string $isbn, ?string $identifiers, string $authors, string $timestamp,
+							string $pubdate, string $tags, string $languages, ?string $cover, ?text $comments, string $userId) {
 		$note = new Note();
 		$note->setTitle($title);
 		$note->setIsbn($isbn);
@@ -85,9 +85,9 @@ class NoteService {
 		return $this->mapper->insert($note);
 	}
 
-	public function update(int $id, string $title, string $emplacement, bool $lu, string $period, string $uuid, string $publisher,
-							string $isbn, string $identifiers, string $authors, string $timestamp, string $pubdate,
-							string $tags, string $languages, string $cover, text $comments, string $userId) {
+	public function update(int $id, string $title, string $emplacement, bool $lu, string $period, string $uuid,
+							string $publisher, string $isbn, string $identifiers, string $authors, string $timestamp, 
+							string $pubdate, string $tags, string $languages, string $cover, text $comments, string $userId) {
 		try {
 			$note = $this->mapper->find($id, $userId);
 			$note->setTitle($title);
