@@ -12,7 +12,7 @@
 				class="search-nextbiblio-isbn"
 				value="9782080811158"
 				@submit="searchNoticeFromIsbn()"/>
-			
+			<ul>
 				<AppNavigationItem v-for="author in authors"
 					:key="author.author"
 					:title="author.author"
@@ -35,7 +35,7 @@
 						</ActionButton>
 					</template>
 				</AppNavigationItem>
-			
+			</ul>
 		</AppNavigation>
 		<AppContent>
 			<div v-if="currentNotice">
@@ -337,10 +337,6 @@ export default {
 }
 </script>
 <style scoped>
-	.app-navigation {
-		height: auto;
-	}
-	
 	#app-content-vue > div {
 		width: 90%;
 		padding-top: 40px;
