@@ -337,6 +337,10 @@ export default {
 }
 </script>
 <style scoped>
+	#app-navigation-vue {
+		height: calc(100vh - 10px);
+	}
+	
 	#app-content-vue > div {
 		width: 90%;
 		padding-top: 40px;
