@@ -255,32 +255,16 @@ export default {
 		 * Search a new notice from isbn [we should create it if not already here]
 		 */
 		searchNoticeFromIsbn() {
-			var isbn = $('.search-nextbiblio-isbn input[type="text"]')[0].value
+			var searched = $('.search-nextbiblio-search input[type="text"]')[0].value
 			console.log(isbn)
 			for (var i=0; i<this.notes.length; i++) {
 				console.log(this.notes[i])
-				if (this.notes[i].isbn == isbn) {
+				if (this.notes[i].isbn == searched || this.notes[i].title.match(searched)|| this.notes[i].authors.match(searched)) {
 					this.openNotice(this.notes[i])
 					return
 				}
 			}
-			showError(t('nextbiblio', 'Isbn not found in Biblio'))
-		},
-		
-		/**
-		 * Search a new notice from isbn [we should create it if not already here]
-		 */
-		searchNoticeFromTitle(author) {
-			var title = document.getElementById('author').value
-			console.log(title)
-			for (var i=0; i<this.notes.length; i++) {
-				console.log(this.notes[i])
-				if (this.notes[i].title.match(title)) {
-					openNotice(this.notes[i])
-					return
-				}
-			}
-			showError(t('nextbiblio', 'Isbn not found in Biblio'))
+			showError(t('nextbiblio', 'Isbn/Title/Author not found in Biblio'))
 		},
 		
 		/**
