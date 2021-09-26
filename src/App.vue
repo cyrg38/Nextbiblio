@@ -253,24 +253,8 @@ export default {
 			console.log(isbn)
 			for (var i=0; i<this.notices.length; i++) {
 				console.log(this.notices[i])
-				if (this.notices[i].isbn == isbn) {
+				if (this.notices[i].isbn == isbn || this.notices[i].title.match(isbn) || this.notices[i].authors.match(isbn)) {
 					this.openNotice(this.notices[i])
-					return
-				}
-			}
-			showError(t('nextbiblio', 'Isbn not found in Biblio'))
-		},
-		
-		/**
-		 * Search a new notice from isbn [we should create it if not already here]
-		 */
-		searchNoticeFromTitle(author) {
-			var title = document.getElementById('author').value
-			console.log(title)
-			for (var i=0; i<this.notices.length; i++) {
-				console.log(this.notices[i])
-				if (this.notices[i].title.match(title)) {
-					openNotice(this.notices[i])
 					return
 				}
 			}
@@ -338,7 +322,7 @@ export default {
 </script>
 <style scoped>
 	#app-navigation-vue {
-		height: calc(100vh - 10px);
+		height: calc(170vh - 10px);
 	}
 	
 	#app-content-vue > div {
